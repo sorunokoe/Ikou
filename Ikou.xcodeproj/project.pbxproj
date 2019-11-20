@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		1F9E26DD2385118B006C6A2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E26DC2385118B006C6A2F /* AppDelegate.swift */; };
-		1F9E26DF2385118B006C6A2F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E26DE2385118B006C6A2F /* SceneDelegate.swift */; };
-		1F9E26E12385118B006C6A2F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E26E02385118B006C6A2F /* ViewController.swift */; };
-		1F9E26E42385118B006C6A2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F9E26E22385118B006C6A2F /* Main.storyboard */; };
 		1F9E26E62385118E006C6A2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F9E26E52385118E006C6A2F /* Assets.xcassets */; };
 		1F9E26E92385118E006C6A2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F9E26E72385118E006C6A2F /* LaunchScreen.storyboard */; };
 		1F9E26F42385118E006C6A2F /* IkouTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E26F32385118E006C6A2F /* IkouTests.swift */; };
+		1F9E2702238515E2006C6A2F /* AuthProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E2701238515E2006C6A2F /* AuthProtocols.swift */; };
+		1F9E2704238516D9006C6A2F /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E2703238516D9006C6A2F /* AuthRouter.swift */; };
+		1F9E270623851771006C6A2F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E270523851771006C6A2F /* AuthViewController.swift */; };
+		1F9E270B23851909006C6A2F /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E270A23851909006C6A2F /* AuthPresenter.swift */; };
+		1F9E270D2385192C006C6A2F /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E270C2385192C006C6A2F /* AuthInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,15 +31,17 @@
 /* Begin PBXFileReference section */
 		1F9E26D92385118B006C6A2F /* Ikou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ikou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F9E26DC2385118B006C6A2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1F9E26DE2385118B006C6A2F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1F9E26E02385118B006C6A2F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1F9E26E32385118B006C6A2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F9E26E52385118E006C6A2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F9E26E82385118E006C6A2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F9E26EA2385118E006C6A2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F9E26EF2385118E006C6A2F /* IkouTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IkouTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F9E26F32385118E006C6A2F /* IkouTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IkouTests.swift; sourceTree = "<group>"; };
 		1F9E26F52385118E006C6A2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F9E2701238515E2006C6A2F /* AuthProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProtocols.swift; sourceTree = "<group>"; };
+		1F9E2703238516D9006C6A2F /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
+		1F9E270523851771006C6A2F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		1F9E270A23851909006C6A2F /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		1F9E270C2385192C006C6A2F /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,12 +84,14 @@
 			isa = PBXGroup;
 			children = (
 				1F9E26DC2385118B006C6A2F /* AppDelegate.swift */,
-				1F9E26DE2385118B006C6A2F /* SceneDelegate.swift */,
-				1F9E26E02385118B006C6A2F /* ViewController.swift */,
-				1F9E26E22385118B006C6A2F /* Main.storyboard */,
 				1F9E26E52385118E006C6A2F /* Assets.xcassets */,
 				1F9E26E72385118E006C6A2F /* LaunchScreen.storyboard */,
 				1F9E26EA2385118E006C6A2F /* Info.plist */,
+				1F9E271023851C7C006C6A2F /* API */,
+				1F9E270F23851C2C006C6A2F /* Extensions */,
+				1F9E270E23851A42006C6A2F /* Models */,
+				1F9E26FF238513AE006C6A2F /* Utils */,
+				1F9E26FE238513A8006C6A2F /* Modules */,
 			);
 			path = Ikou;
 			sourceTree = "<group>";
@@ -97,6 +103,62 @@
 				1F9E26F52385118E006C6A2F /* Info.plist */,
 			);
 			path = IkouTests;
+			sourceTree = "<group>";
+		};
+		1F9E26FE238513A8006C6A2F /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				1F9E2700238515D1006C6A2F /* Auth */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		1F9E26FF238513AE006C6A2F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		1F9E2700238515D1006C6A2F /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				1F9E27072385179D006C6A2F /* View */,
+				1F9E2701238515E2006C6A2F /* AuthProtocols.swift */,
+				1F9E2703238516D9006C6A2F /* AuthRouter.swift */,
+				1F9E270523851771006C6A2F /* AuthViewController.swift */,
+				1F9E270A23851909006C6A2F /* AuthPresenter.swift */,
+				1F9E270C2385192C006C6A2F /* AuthInteractor.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		1F9E27072385179D006C6A2F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1F9E270E23851A42006C6A2F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1F9E270F23851C2C006C6A2F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1F9E271023851C7C006C6A2F /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,7 +244,6 @@
 			files = (
 				1F9E26E92385118E006C6A2F /* LaunchScreen.storyboard in Resources */,
 				1F9E26E62385118E006C6A2F /* Assets.xcassets in Resources */,
-				1F9E26E42385118B006C6A2F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,9 +261,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F9E26E12385118B006C6A2F /* ViewController.swift in Sources */,
 				1F9E26DD2385118B006C6A2F /* AppDelegate.swift in Sources */,
-				1F9E26DF2385118B006C6A2F /* SceneDelegate.swift in Sources */,
+				1F9E270D2385192C006C6A2F /* AuthInteractor.swift in Sources */,
+				1F9E270623851771006C6A2F /* AuthViewController.swift in Sources */,
+				1F9E2704238516D9006C6A2F /* AuthRouter.swift in Sources */,
+				1F9E270B23851909006C6A2F /* AuthPresenter.swift in Sources */,
+				1F9E2702238515E2006C6A2F /* AuthProtocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,14 +289,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1F9E26E22385118B006C6A2F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1F9E26E32385118B006C6A2F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1F9E26E72385118E006C6A2F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -363,7 +419,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FT7ZNMJMWK;
 				INFOPLIST_FILE = Ikou/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -371,7 +429,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = noa.Ikou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -380,7 +438,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FT7ZNMJMWK;
 				INFOPLIST_FILE = Ikou/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -388,7 +448,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = noa.Ikou;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
