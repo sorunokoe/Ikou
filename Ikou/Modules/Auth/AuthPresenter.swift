@@ -10,7 +10,9 @@ import Foundation
 
 class AuthPresenter: AuthPresenterProtocol, AuthInteractorOutputProtocol{
     
+    
     weak private var view: AuthViewProtocol?
+    private var cacheHelper: CacheHelper?
     var interactor: AuthInteractorInputProtocol?
     var router: AuthWireframeProtocol?
     
@@ -18,5 +20,22 @@ class AuthPresenter: AuthPresenterProtocol, AuthInteractorOutputProtocol{
         self.interactor = interactor
         self.view = interface
         self.router = router
+        self.cacheHelper = CacheHelper()
+    }
+    
+    func getAuthURL(){
+        guard let url = URL(string: Constants.API.authUrl.rawValue) else { return }
+        view?.didLoadAuth(url: url)
+    }
+    func retrieveSteamIdFrom(_ url: String?) {
+        guard let url = url, let cacheHelper = cacheHelper else { return }
+        let list = url.split(separator: "/")
+        let steamID = list.first { (part) -> Bool in
+            return part.count == 17
+        }
+        if let steamID = steamID{
+            cacheHelper.set(key: .steamID, value: String(steamID))
+            router?.moveToMain()
+        }
     }
 }
