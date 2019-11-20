@@ -10,11 +10,10 @@ import UIKit
 
 class AuthViewController: UIViewController, AuthViewProtocol{
     
-    
-    //MARK: - UI Properties
+    // MARK: - UI Properties
     var titleLabel: UILabel!
     
-    //MARK: - Protocol
+    // MARK: - Protocol
     var presenter: AuthPresenterProtocol?
     
     override func viewDidLoad() {
@@ -25,7 +24,7 @@ class AuthViewController: UIViewController, AuthViewProtocol{
 }
 extension AuthViewController{
     
-    //MARK: - UI
+    // MARK: - UI
     func setUI(){
         
     }
