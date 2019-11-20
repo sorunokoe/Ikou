@@ -15,7 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
        
-        let view = AuthRouter.createModule()
+        let cacheHelper = CacheHelper()
+        var view: UIViewController!
+        if cacheHelper.get(.steamID) == nil{
+            view = AuthRouter.createModule()
+        }else{
+            view = TabBarRouter.createModule()
+        }
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = view
         window?.makeKeyAndVisible()
@@ -23,15 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func applicationWillResignActive(_ application: UIApplication) {
-    }
+    func applicationWillResignActive(_ application: UIApplication) {}
     
-    func applicationDidEnterBackground(_ application: UIApplication) {
-    }
+    func applicationDidEnterBackground(_ application: UIApplication) {}
     
     func applicationWillEnterForeground(_ application: UIApplication) {}
 
-    func applicationWillTerminate(_ application: UIApplication) {
-        
-    }
+    func applicationWillTerminate(_ application: UIApplication) {}
 }

@@ -24,5 +24,18 @@ class AuthRouter: AuthWireframeProtocol{
        
        return view
     }
+    
+    func moveToMain() {
+        guard let window = UIApplication.shared.keyWindow else {
+            return
+        }
+        let vc = TabBarRouter.createModule()
+        UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            let oldState: Bool = UIView.areAnimationsEnabled
+            UIView.setAnimationsEnabled(false)
+            window.rootViewController = vc
+            UIView.setAnimationsEnabled(oldState)
+        }, completion: nil)
+    }
 
 }
