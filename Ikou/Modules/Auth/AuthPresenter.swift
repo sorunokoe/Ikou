@@ -10,8 +10,9 @@ import Foundation
 
 class AuthPresenter: AuthPresenterProtocol, AuthInteractorOutputProtocol{
     
-    weak private var cacheHelper: CacheHelper?
+    
     weak private var view: AuthViewProtocol?
+    private var cacheHelper: CacheHelper?
     var interactor: AuthInteractorInputProtocol?
     var router: AuthWireframeProtocol?
     

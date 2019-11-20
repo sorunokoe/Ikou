@@ -20,6 +20,8 @@ class MainViewController: UIViewController, MainView{
         super.viewDidLoad()
         self.view.backgroundColor = .blue
         cacheHelper = CacheHelper()
+        titleLabel = UILabel()
+        self.view.addSubview(titleLabel)
         titleLabel.text = cacheHelper?.get(.steamID) ?? "No Steam ID"
         titleLabel.snp.makeConstraints {
             $0.center.equalToSuperview()
