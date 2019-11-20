@@ -9,13 +9,18 @@
 import Foundation
 
 protocol AuthWireframeProtocol: class{
-    
+    func moveToMain()
 }
 protocol AuthViewProtocol: class{
     var presenter: AuthPresenterProtocol?  { get set }
+    
+    func didLoadAuth(url: URL)
 }
 protocol AuthPresenterProtocol: class{
     var interactor: AuthInteractorInputProtocol? { get set }
+    
+    func getAuthURL()
+    func retrieveSteamIdFrom(_ url: String?)
 }
 protocol AuthInteractorInputProtocol: class{
     var presenter: AuthPresenterProtocol?  { get set }

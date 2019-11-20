@@ -6,6 +6,9 @@ target 'Ikou' do
 
   # Pods for Ikou
   
+  #Loader
+  pod 'NVActivityIndicatorView'
+
   # Keyboard
   pod 'IQKeyboardManagerSwift'
 
