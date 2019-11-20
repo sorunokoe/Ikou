@@ -11,7 +11,6 @@
 		1F9E26DD2385118B006C6A2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E26DC2385118B006C6A2F /* AppDelegate.swift */; };
 		1F9E26E62385118E006C6A2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F9E26E52385118E006C6A2F /* Assets.xcassets */; };
 		1F9E26E92385118E006C6A2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F9E26E72385118E006C6A2F /* LaunchScreen.storyboard */; };
-		1F9E26F42385118E006C6A2F /* IkouTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E26F32385118E006C6A2F /* IkouTests.swift */; };
 		1F9E2702238515E2006C6A2F /* AuthProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E2701238515E2006C6A2F /* AuthProtocols.swift */; };
 		1F9E2704238516D9006C6A2F /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E2703238516D9006C6A2F /* AuthRouter.swift */; };
 		1F9E270623851771006C6A2F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E270523851771006C6A2F /* AuthViewController.swift */; };
@@ -29,6 +28,7 @@
 		1F9E272A2385689C006C6A2F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E27292385689C006C6A2F /* UIViewController+Extension.swift */; };
 		1F9E272C238569C9006C6A2F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E272B238569C9006C6A2F /* UIColor+Extension.swift */; };
 		1F9E272E23856A81006C6A2F /* TabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E272D23856A81006C6A2F /* TabBarPresenter.swift */; };
+		1F9E273323857584006C6A2F /* AuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E273223857584006C6A2F /* AuthTests.swift */; };
 		5FDEBA997F790D78BEC8C88E /* Pods_IkouTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EC80A2BA42D1414D14A014 /* Pods_IkouTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +49,6 @@
 		1F9E26E82385118E006C6A2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F9E26EA2385118E006C6A2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F9E26EF2385118E006C6A2F /* IkouTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IkouTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1F9E26F32385118E006C6A2F /* IkouTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IkouTests.swift; sourceTree = "<group>"; };
 		1F9E26F52385118E006C6A2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F9E2701238515E2006C6A2F /* AuthProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProtocols.swift; sourceTree = "<group>"; };
 		1F9E2703238516D9006C6A2F /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
@@ -68,6 +67,7 @@
 		1F9E27292385689C006C6A2F /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		1F9E272B238569C9006C6A2F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		1F9E272D23856A81006C6A2F /* TabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPresenter.swift; sourceTree = "<group>"; };
+		1F9E273223857584006C6A2F /* AuthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTests.swift; sourceTree = "<group>"; };
 		3239AC8D737F612EC129445B /* Pods_Ikou.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ikou.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0AC4C68D1F7CB32FF9E3878 /* Pods-IkouTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IkouTests.debug.xcconfig"; path = "Target Support Files/Pods-IkouTests/Pods-IkouTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B1EC80A2BA42D1414D14A014 /* Pods_IkouTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IkouTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,7 +135,7 @@
 		1F9E26F22385118E006C6A2F /* IkouTests */ = {
 			isa = PBXGroup;
 			children = (
-				1F9E26F32385118E006C6A2F /* IkouTests.swift */,
+				1F9E27312385755E006C6A2F /* Auth */,
 				1F9E26F52385118E006C6A2F /* Info.plist */,
 			);
 			path = IkouTests;
@@ -241,6 +241,14 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		1F9E27312385755E006C6A2F /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				1F9E273223857584006C6A2F /* AuthTests.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		78A4C41BDC22D0B905BE8F5E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +326,7 @@
 					};
 					1F9E26EE2385118E006C6A2F = {
 						CreatedOnToolsVersion = 11.2.1;
+						LastSwiftMigration = 1120;
 						TestTargetID = 1F9E26D82385118B006C6A2F;
 					};
 				};
@@ -472,7 +481,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F9E26F42385118E006C6A2F /* IkouTests.swift in Sources */,
+				1F9E273323857584006C6A2F /* AuthTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,6 +667,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IkouTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -668,6 +678,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = noa.IkouTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ikou.app/Ikou";
@@ -680,6 +691,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = IkouTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;

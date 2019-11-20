@@ -15,6 +15,7 @@ enum CacheKeys: String{
 protocol CacheHelperProtocol{
     func set(key: CacheKeys, value: String)
     func get(_ key: CacheKeys) -> String?
+    func remove(_ key: CacheKeys) -> Bool
 }
 class CacheHelper: CacheHelperProtocol{
     
@@ -31,6 +32,13 @@ class CacheHelper: CacheHelperProtocol{
         switch key {
         case .steamID:
             return keychain.get(key.rawValue)
+        }
+    }
+    
+    func remove(_ key: CacheKeys) -> Bool{
+        switch key {
+        case .steamID:
+            return keychain.delete(key.rawValue)
         }
     }
     
