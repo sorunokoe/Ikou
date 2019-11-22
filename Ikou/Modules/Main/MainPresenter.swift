@@ -1,0 +1,73 @@
+//
+//  MainViewPresenter.swift
+//  Ikou
+//
+//  Created by Salgara on 11/23/19.
+//  Copyright © 2019 Noa. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+class MainPresenter: MainPresenterProtocol{
+    
+    var interactor: MainInputInteractorProtocol?
+    private weak var view: MainViewProtocol?
+    private weak var router: MainWireframeProtocol?
+    private var profile: Profile?
+    private var timeAndDateHelper: TimeAndDateHelper?
+    private var imageHelper: ImageHelper?
+    
+    init(interface: MainViewProtocol, router: MainWireframeProtocol, interactor: MainInputInteractorProtocol){
+        self.view = interface
+        self.router = router
+        self.interactor = interactor
+        self.timeAndDateHelper = TimeAndDateHelper()
+        self.imageHelper = ImageHelper()
+    }
+    
+    func loadProfile() {
+        interactor?.loadProfile()
+    }
+    
+    func getAvatar(completion: @escaping ((UIImage) -> Void)){
+        guard let profile = profile else { return }
+        imageHelper?.getImageBy(url: profile.avatar, completion: completion)
+    }
+    func getUsername() -> String{
+        return profile?.personaname ?? ""
+    }
+    func getUserStatus() -> String?{
+        guard let profile = profile else { return nil }
+        let status = ["Offline", "Online", "Busy", "Away", "Snooze", "looking to trade", "looking to play"]
+        return status[profile.personastate]
+    }
+    
+    func getLastTimeOnline() -> String?{
+        guard let profile = profile, let timeAndDateHelper = timeAndDateHelper else { return nil }
+        return "Last online: \(timeAndDateHelper.getTimeFrom(unix: profile.lastlogoff))"
+    }
+    func getPrivateOrPublicProfile() -> String?{
+        guard let profile = profile else { return nil }
+        switch profile.communityvisibilitystate {
+        case 0:
+            return "This account is private"
+        case 3:
+            return "This account is publie"
+        default:
+            return nil
+        }
+    }
+}
+extension MainPresenter: MainOutputInteractorProtocol{
+    
+    func didLoadProfile(profile: Profile) {
+        self.profile = profile
+        view?.didLoadProfile()
+    }
+    
+    func didLoadWith(error: String) {
+        view?.showError(error)
+    }
+    
+}

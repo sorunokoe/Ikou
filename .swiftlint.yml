@@ -6,6 +6,8 @@ disabled_rules:
 - trailing_comma
 - trailing_whitespace
 - opening_brace
+- empty_enum_arguments
+- statement_position
 opt_in_rules:
 - empty_count
 - force_unwrapping

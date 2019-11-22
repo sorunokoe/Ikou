@@ -6,7 +6,6 @@
 //  Copyright © 2019 Noa. All rights reserved.
 //
 
-
 import UIKit
 import NVActivityIndicatorView
 
@@ -62,7 +61,6 @@ extension UIViewController {
         tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: -2.0)
     }
     
-
     public func hideIconButtonRight() {
         guard let barButton = self.navigationItem.rightBarButtonItem else {
             return

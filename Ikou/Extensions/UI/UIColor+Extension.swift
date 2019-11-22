@@ -13,7 +13,7 @@ import Hue
 extension UIColor {
 
     public static func progressViewFill() -> UIColor {
-        return UIColor(hex:"#C6C6C6").alpha(0.3)
+        return UIColor(hex: "#C6C6C6").alpha(0.3)
     }
     
     public static func redGradientStart() -> UIColor {

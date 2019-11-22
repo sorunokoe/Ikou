@@ -41,7 +41,7 @@ class AuthTests: XCTestCase {
     
     func test_retrieveWrongStreamID(){
         let cacheHelper = CacheHelper()
-        _ = cacheHelper.remove(.steamID)
+        cacheHelper.remove(.steamID)
         let url = "https://somewebsitedomain.com/profiles/some/123/421/2121?go_to"
         sut.retrieveSteamIdFrom(url)
         XCTAssertEqual(cacheHelper.get(.steamID), nil)

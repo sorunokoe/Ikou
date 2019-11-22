@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-       
+        
         let cacheHelper = CacheHelper()
         var view: UIViewController!
         if cacheHelper.get(.steamID) == nil{
@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = view
         window?.makeKeyAndVisible()
-
+        
         return true
     }
     
@@ -35,6 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {}
     
     func applicationWillEnterForeground(_ application: UIApplication) {}
-
+    
     func applicationWillTerminate(_ application: UIApplication) {}
 }
