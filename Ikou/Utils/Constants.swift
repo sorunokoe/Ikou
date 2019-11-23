@@ -8,6 +8,7 @@
 
 import Foundation
 import Hue
+import UIKit
 
 struct Constants{
     
@@ -26,7 +27,58 @@ struct Constants{
         }
     }
     
-    struct Colors {
-        static var blueOcean = UIColor(hex: "#00A2E8")
+    
+    enum Colors{
+        case background(view: UIView)
+        case title(view: UIView)
+        case status
+        case block(view: UIView)
+        
+        var color: UIColor{
+            switch self {
+            case .background(let view):
+                if #available(iOS 12.0, *) {
+                    switch view.traitCollection.userInterfaceStyle{
+                    case .unspecified, .dark:
+                        return UIColor(hex: "#1d1d1d")
+                    case .light:
+                        return .white
+                    default:
+                        return UIColor(hex: "#1d1d1d")
+                    }
+                } else {
+                    return UIColor(hex: "#1d1d1d")
+                }
+            case .status:
+                return .systemBlue
+            case .title(let view):
+                if #available(iOS 12.0, *) {
+                    switch view.traitCollection.userInterfaceStyle{
+                    case .unspecified, .dark:
+                        return .white
+                    case .light:
+                        return .black
+                    default:
+                        return .black
+                    }
+                } else {
+                    return .black
+                }
+            case .block(let view):
+                if #available(iOS 12.0, *) {
+                    switch view.traitCollection.userInterfaceStyle{
+                    case .unspecified, .dark:
+                        return UIColor(hex: "#242424")
+                    case .light:
+                        return UIColor(hex: "#FBFBFB")
+                    default:
+                        return UIColor(hex: "#242424")
+                    }
+                } else {
+                    return UIColor(hex: "#242424")
+                }
+            }
+        }
     }
+    
 }

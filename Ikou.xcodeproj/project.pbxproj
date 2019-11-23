@@ -39,6 +39,12 @@
 		1FF5D8D12388752700FD717B /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8D02388752700FD717B /* MainInteractor.swift */; };
 		1FF5D8D323887F3F00FD717B /* TimeAndDateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8D223887F3F00FD717B /* TimeAndDateHelper.swift */; };
 		1FF5D8D62388889500FD717B /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8D52388889500FD717B /* ImageHelper.swift */; };
+		1FF5D8D823893CD600FD717B /* OwnedGamesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8D723893CD600FD717B /* OwnedGamesResponse.swift */; };
+		1FF5D8DA23893CFD00FD717B /* SteamResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8D923893CFD00FD717B /* SteamResponse.swift */; };
+		1FF5D8DC23893D8200FD717B /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8DB23893D8200FD717B /* Game.swift */; };
+		1FF5D8DF238941D100FD717B /* OwnedGameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8DE238941D100FD717B /* OwnedGameCollectionViewCell.swift */; };
+		1FF5D8E12389465E00FD717B /* MainViewController+CollectionVIewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8E02389465E00FD717B /* MainViewController+CollectionVIewProtocol.swift */; };
+		1FF5D8E32389468400FD717B /* MainViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8E22389468400FD717B /* MainViewController+Extension.swift */; };
 		5FDEBA997F790D78BEC8C88E /* Pods_IkouTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EC80A2BA42D1414D14A014 /* Pods_IkouTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +94,12 @@
 		1FF5D8D02388752700FD717B /* MainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
 		1FF5D8D223887F3F00FD717B /* TimeAndDateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndDateHelper.swift; sourceTree = "<group>"; };
 		1FF5D8D52388889500FD717B /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		1FF5D8D723893CD600FD717B /* OwnedGamesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedGamesResponse.swift; sourceTree = "<group>"; };
+		1FF5D8D923893CFD00FD717B /* SteamResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamResponse.swift; sourceTree = "<group>"; };
+		1FF5D8DB23893D8200FD717B /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		1FF5D8DE238941D100FD717B /* OwnedGameCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedGameCollectionViewCell.swift; sourceTree = "<group>"; };
+		1FF5D8E02389465E00FD717B /* MainViewController+CollectionVIewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+CollectionVIewProtocol.swift"; sourceTree = "<group>"; };
+		1FF5D8E22389468400FD717B /* MainViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Extension.swift"; sourceTree = "<group>"; };
 		3239AC8D737F612EC129445B /* Pods_Ikou.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ikou.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0AC4C68D1F7CB32FF9E3878 /* Pods-IkouTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IkouTests.debug.xcconfig"; path = "Target Support Files/Pods-IkouTests/Pods-IkouTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B1EC80A2BA42D1414D14A014 /* Pods_IkouTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IkouTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +220,7 @@
 			children = (
 				1FF5D8C4238870E900FD717B /* Responses */,
 				1FF5D8C223886E7300FD717B /* Profile.swift */,
+				1FF5D8DB23893D8200FD717B /* Game.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -248,11 +261,14 @@
 		1F9E271A23856112006C6A2F /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				1FF5D8DD2389417700FD717B /* View */,
 				1F9E271B23856127006C6A2F /* MainProtocols.swift */,
 				1F9E271D2385620C006C6A2F /* MainViewController.swift */,
 				1F9E27272385678C006C6A2F /* MainRouter.swift */,
 				1FF5D8CE2388741C00FD717B /* MainPresenter.swift */,
 				1FF5D8D02388752700FD717B /* MainInteractor.swift */,
+				1FF5D8E02389465E00FD717B /* MainViewController+CollectionVIewProtocol.swift */,
+				1FF5D8E22389468400FD717B /* MainViewController+Extension.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -296,7 +312,9 @@
 		1FF5D8C4238870E900FD717B /* Responses */ = {
 			isa = PBXGroup;
 			children = (
+				1FF5D8D923893CFD00FD717B /* SteamResponse.swift */,
 				1FF5D8C52388711700FD717B /* ProfileResponse.swift */,
+				1FF5D8D723893CD600FD717B /* OwnedGamesResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -309,6 +327,14 @@
 				1FF5D8CC2388737100FD717B /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		1FF5D8DD2389417700FD717B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1FF5D8DE238941D100FD717B /* OwnedGameCollectionViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		78A4C41BDC22D0B905BE8F5E /* Pods */ = {
@@ -530,9 +556,12 @@
 				1F9E271E2385620C006C6A2F /* MainViewController.swift in Sources */,
 				1FF5D8CB2388731D00FD717B /* ProfileRouter.swift in Sources */,
 				1F9E270D2385192C006C6A2F /* AuthInteractor.swift in Sources */,
+				1FF5D8D823893CD600FD717B /* OwnedGamesResponse.swift in Sources */,
 				1F9E27282385678C006C6A2F /* MainRouter.swift in Sources */,
+				1FF5D8DF238941D100FD717B /* OwnedGameCollectionViewCell.swift in Sources */,
 				1F9E272E23856A81006C6A2F /* TabBarPresenter.swift in Sources */,
 				1FF5D8C62388711700FD717B /* ProfileResponse.swift in Sources */,
+				1FF5D8DC23893D8200FD717B /* Game.swift in Sources */,
 				1F9E270623851771006C6A2F /* AuthViewController.swift in Sources */,
 				1F9E2704238516D9006C6A2F /* AuthRouter.swift in Sources */,
 				1F9E271923855EB1006C6A2F /* CacheHelper.swift in Sources */,
@@ -544,8 +573,11 @@
 				1F9E271C23856127006C6A2F /* MainProtocols.swift in Sources */,
 				1F9E2702238515E2006C6A2F /* AuthProtocols.swift in Sources */,
 				1FF5D8D12388752700FD717B /* MainInteractor.swift in Sources */,
+				1FF5D8E32389468400FD717B /* MainViewController+Extension.swift in Sources */,
 				1FF5D8D323887F3F00FD717B /* TimeAndDateHelper.swift in Sources */,
+				1FF5D8E12389465E00FD717B /* MainViewController+CollectionVIewProtocol.swift in Sources */,
 				1FF5D8D62388889500FD717B /* ImageHelper.swift in Sources */,
+				1FF5D8DA23893CFD00FD717B /* SteamResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

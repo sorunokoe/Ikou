@@ -1,5 +1,5 @@
 //
-//  ProfileResponse.swift
+//  SteamResponse.swift
 //  Ikou
 //
 //  Created by Salgara on 11/23/19.
@@ -8,16 +8,15 @@
 
 import Foundation
 
-struct ProfileResponse: Codable{
-    var players: [Profile]
+struct SteamResponse<T: Codable>: Codable{
+    var response: T
     
     enum CodingKeys: CodingKey{
-        case players
+        case response
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        players = try container.decode([Profile].self, forKey: .players)
+        response = try container.decode(T.self, forKey: .response)
     }
-    
 }

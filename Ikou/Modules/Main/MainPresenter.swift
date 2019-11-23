@@ -14,17 +14,17 @@ class MainPresenter: MainPresenterProtocol{
     var interactor: MainInputInteractorProtocol?
     private weak var view: MainViewProtocol?
     private weak var router: MainWireframeProtocol?
+    
     private var profile: Profile?
-    private var timeAndDateHelper: TimeAndDateHelper?
-    private var imageHelper: ImageHelper?
+    private var games = [Game]()
     
     init(interface: MainViewProtocol, router: MainWireframeProtocol, interactor: MainInputInteractorProtocol){
         self.view = interface
         self.router = router
         self.interactor = interactor
-        self.timeAndDateHelper = TimeAndDateHelper()
-        self.imageHelper = ImageHelper()
     }
+    
+    // MARK: - Profile
     
     func loadProfile() {
         interactor?.loadProfile()
@@ -32,7 +32,7 @@ class MainPresenter: MainPresenterProtocol{
     
     func getAvatar(completion: @escaping ((UIImage) -> Void)){
         guard let profile = profile else { return }
-        imageHelper?.getImageBy(url: profile.avatar, completion: completion)
+        ImageHelper.getImageBy(url: .avatar(url: profile.avatar), completion: completion)
     }
     func getUsername() -> String{
         return profile?.personaname ?? ""
@@ -44,8 +44,8 @@ class MainPresenter: MainPresenterProtocol{
     }
     
     func getLastTimeOnline() -> String?{
-        guard let profile = profile, let timeAndDateHelper = timeAndDateHelper else { return nil }
-        return "Last online: \(timeAndDateHelper.getTimeFrom(unix: profile.lastlogoff))"
+        guard let profile = profile else { return nil }
+        return "Last online: \(TimeAndDateHelper.getTimeFrom(unix: profile.lastlogoff))"
     }
     func getPrivateOrPublicProfile() -> String?{
         guard let profile = profile else { return nil }
@@ -58,12 +58,28 @@ class MainPresenter: MainPresenterProtocol{
             return nil
         }
     }
+    
+    // MARK: - Owned Games
+    
+    func loadOwnedGames() {
+        interactor?.loadOwnedGames()
+    }
+    
+    func getGames() -> [Game]{
+        return games
+    }
+    
 }
 extension MainPresenter: MainOutputInteractorProtocol{
     
     func didLoadProfile(profile: Profile) {
         self.profile = profile
         view?.didLoadProfile()
+    }
+    
+    func didLoadGames(games: [Game]) {
+        self.games = games
+        view?.didLoadOwnedGames()
     }
     
     func didLoadWith(error: String) {
