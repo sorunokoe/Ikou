@@ -60,7 +60,7 @@ extension OwnedGameCollectionViewCell{
             let view = UIView()
             view.clipsToBounds = true
             view.layer.cornerRadius = 10
-            view.backgroundColor = UIColor(hex: "#1d1d1d")
+            view.backgroundColor = Constants.Colors.block(view: view).color
             view.layer.shadowColor = UIColor.black.cgColor
             view.layer.shadowPath = UIBezierPath(rect: view.frame).cgPath
             view.layer.shadowOffset = CGSize(width: 0, height: 0)
@@ -68,7 +68,7 @@ extension OwnedGameCollectionViewCell{
         }()
         titleLabel = {
             let label = UILabel()
-            label.textColor = .white
+            label.textColor = Constants.Colors.title(view: label).color
             label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
             label.adjustsFontSizeToFitWidth = true
             return label
@@ -84,13 +84,13 @@ extension OwnedGameCollectionViewCell{
             $0.top.equalToSuperview()
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalTo(titleView.snp.top).offset(20)
         }
         titleView.snp.makeConstraints {
-            $0.bottom.equalToSuperview().offset(30)
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
             $0.top.equalTo(titleLabel.snp.top).offset(-15)
+            $0.bottom.equalToSuperview()
         }
         titleLabel.snp.makeConstraints {
             $0.left.equalToSuperview().offset(10)

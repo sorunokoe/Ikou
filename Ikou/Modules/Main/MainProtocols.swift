@@ -35,11 +35,11 @@ protocol MainPresenterProtocol: class{
 protocol MainInputInteractorProtocol: class{
     var presenter: MainOutputInteractorProtocol? { get set }
     
-    func loadProfile()
-    func loadOwnedGames()
+    func loadProfile(steamId: String)
+    func loadOwnedGames(steamId: String)
 }
 protocol MainOutputInteractorProtocol: class{
-    func didLoadProfile(profile: Profile)
+    func didLoadProfile(profile: Profile?)
     func didLoadGames(games: [Game])
     func didLoadWith(error: String)
 }

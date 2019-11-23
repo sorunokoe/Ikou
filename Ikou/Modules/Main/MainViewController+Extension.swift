@@ -17,6 +17,10 @@ extension MainViewController{
     }
     func setViews(){
         self.view.backgroundColor = Constants.Colors.background(view: self.view).color
+        setProfileView()
+        setOwnedGamesView()
+    }
+    func setProfileView(){
         profileView = {
             let view = UIView()
             view.layer.cornerRadius = 20
@@ -62,6 +66,8 @@ extension MainViewController{
             view.backgroundColor = .darkGray
             return view
         }()
+    }
+    func setOwnedGamesView(){
         ownedGamesView = {
             let view = UIView()
             return view
@@ -75,7 +81,7 @@ extension MainViewController{
         }()
         ownedGamesCollectionView = {
             let layout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSize(width: 280, height: 100)
+            layout.itemSize = CGSize(width: 280, height: 120)
             layout.scrollDirection = .horizontal
             layout.minimumLineSpacing = 20
             let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
@@ -143,7 +149,7 @@ extension MainViewController{
             $0.top.equalTo(profileView.snp.bottom).offset(50)
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
-            $0.height.equalTo(180)
+            $0.height.equalTo(200)
         }
         ownedGamesTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()

@@ -9,18 +9,16 @@
 import Moya
 
 class MainInteractor: MainInputInteractorProtocol{
+    
     var presenter: MainOutputInteractorProtocol?
     var provider: MoyaProvider<SteamAPI>?
-    var cacheHelper: CacheHelper?
     
     init(){
-        cacheHelper = CacheHelper()
         provider = MoyaProvider<SteamAPI>(plugins: [NetworkLoggerPlugin(verbose: true)])
     }
     
-    func loadProfile() {
-        guard let provider = provider, let cacheHelper = cacheHelper else { return }
-        let steamId = cacheHelper.get(.steamID) ?? ""
+    func loadProfile(steamId: String) {
+        guard let provider = provider else { return }
         provider.request(.profile(steamId: steamId)){[weak self] result in
             guard let `self` = self else { return }
             switch result{
@@ -40,9 +38,8 @@ class MainInteractor: MainInputInteractorProtocol{
         }
     }
     
-    func loadOwnedGames() {
-        guard let provider = provider, let cacheHelper = cacheHelper else { return }
-        let steamId = cacheHelper.get(.steamID) ?? ""
+    func loadOwnedGames(steamId: String) {
+        guard let provider = provider else { return }
         provider.request(.ownedGames(steamId: steamId)){[weak self] result in
             guard let `self` = self else { return }
             switch result{
@@ -61,4 +58,3 @@ class MainInteractor: MainInputInteractorProtocol{
     }
     
 }
-

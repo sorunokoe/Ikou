@@ -13,10 +13,11 @@ class MainRouter: MainWireframeProtocol{
     weak var viewController: UIViewController?
     
     static func createModule() -> UIViewController{
+        let steamId = CacheHelper().get(.steamID) ?? ""
         let view = MainViewController()
         let router = MainRouter()
         let interactor = MainInteractor()
-        let presenter = MainPresenter(interface: view, router: router, interactor: interactor)
+        let presenter = MainPresenter(interface: view, router: router, interactor: interactor, steamId: steamId)
         view.presenter = presenter
         presenter.interactor = interactor
         interactor.presenter = presenter

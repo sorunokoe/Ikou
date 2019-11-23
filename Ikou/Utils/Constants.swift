@@ -27,7 +27,6 @@ struct Constants{
         }
     }
     
-    
     enum Colors{
         case background(view: UIView)
         case title(view: UIView)

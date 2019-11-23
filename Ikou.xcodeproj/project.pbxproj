@@ -28,7 +28,7 @@
 		1F9E272A2385689C006C6A2F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E27292385689C006C6A2F /* UIViewController+Extension.swift */; };
 		1F9E272C238569C9006C6A2F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E272B238569C9006C6A2F /* UIColor+Extension.swift */; };
 		1F9E272E23856A81006C6A2F /* TabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E272D23856A81006C6A2F /* TabBarPresenter.swift */; };
-		1F9E273323857584006C6A2F /* AuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E273223857584006C6A2F /* AuthTests.swift */; };
+		1F9E273323857584006C6A2F /* AuthPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E273223857584006C6A2F /* AuthPresenterTests.swift */; };
 		1FF5D8C123886D1F00FD717B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8C023886D1F00FD717B /* String+Extension.swift */; };
 		1FF5D8C323886E7300FD717B /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8C223886E7300FD717B /* Profile.swift */; };
 		1FF5D8C62388711700FD717B /* ProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8C52388711700FD717B /* ProfileResponse.swift */; };
@@ -45,6 +45,8 @@
 		1FF5D8DF238941D100FD717B /* OwnedGameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8DE238941D100FD717B /* OwnedGameCollectionViewCell.swift */; };
 		1FF5D8E12389465E00FD717B /* MainViewController+CollectionVIewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8E02389465E00FD717B /* MainViewController+CollectionVIewProtocol.swift */; };
 		1FF5D8E32389468400FD717B /* MainViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8E22389468400FD717B /* MainViewController+Extension.swift */; };
+		1FF5D8E923897A7700FD717B /* MainPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8E823897A7700FD717B /* MainPresenterTests.swift */; };
+		1FF5D8EB238980A300FD717B /* MainInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8EA238980A300FD717B /* MainInteractorTests.swift */; };
 		5FDEBA997F790D78BEC8C88E /* Pods_IkouTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EC80A2BA42D1414D14A014 /* Pods_IkouTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,7 +85,7 @@
 		1F9E27292385689C006C6A2F /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		1F9E272B238569C9006C6A2F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		1F9E272D23856A81006C6A2F /* TabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPresenter.swift; sourceTree = "<group>"; };
-		1F9E273223857584006C6A2F /* AuthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTests.swift; sourceTree = "<group>"; };
+		1F9E273223857584006C6A2F /* AuthPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenterTests.swift; sourceTree = "<group>"; };
 		1FF5D8C023886D1F00FD717B /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		1FF5D8C223886E7300FD717B /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		1FF5D8C52388711700FD717B /* ProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResponse.swift; sourceTree = "<group>"; };
@@ -100,6 +102,8 @@
 		1FF5D8DE238941D100FD717B /* OwnedGameCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedGameCollectionViewCell.swift; sourceTree = "<group>"; };
 		1FF5D8E02389465E00FD717B /* MainViewController+CollectionVIewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+CollectionVIewProtocol.swift"; sourceTree = "<group>"; };
 		1FF5D8E22389468400FD717B /* MainViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Extension.swift"; sourceTree = "<group>"; };
+		1FF5D8E823897A7700FD717B /* MainPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenterTests.swift; sourceTree = "<group>"; };
+		1FF5D8EA238980A300FD717B /* MainInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractorTests.swift; sourceTree = "<group>"; };
 		3239AC8D737F612EC129445B /* Pods_Ikou.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ikou.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0AC4C68D1F7CB32FF9E3878 /* Pods-IkouTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IkouTests.debug.xcconfig"; path = "Target Support Files/Pods-IkouTests/Pods-IkouTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B1EC80A2BA42D1414D14A014 /* Pods_IkouTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IkouTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +171,7 @@
 		1F9E26F22385118E006C6A2F /* IkouTests */ = {
 			isa = PBXGroup;
 			children = (
+				1FF5D8E723897A6700FD717B /* Main */,
 				1F9E27312385755E006C6A2F /* Auth */,
 				1F9E26F52385118E006C6A2F /* Info.plist */,
 			);
@@ -287,7 +292,7 @@
 		1F9E27312385755E006C6A2F /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				1F9E273223857584006C6A2F /* AuthTests.swift */,
+				1F9E273223857584006C6A2F /* AuthPresenterTests.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -335,6 +340,15 @@
 				1FF5D8DE238941D100FD717B /* OwnedGameCollectionViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1FF5D8E723897A6700FD717B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				1FF5D8E823897A7700FD717B /* MainPresenterTests.swift */,
+				1FF5D8EA238980A300FD717B /* MainInteractorTests.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		78A4C41BDC22D0B905BE8F5E /* Pods */ = {
@@ -585,7 +599,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F9E273323857584006C6A2F /* AuthTests.swift in Sources */,
+				1FF5D8E923897A7700FD717B /* MainPresenterTests.swift in Sources */,
+				1F9E273323857584006C6A2F /* AuthPresenterTests.swift in Sources */,
+				1FF5D8EB238980A300FD717B /* MainInteractorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

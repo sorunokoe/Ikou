@@ -9,7 +9,7 @@
 import XCTest
 @testable import Ikou
 
-class AuthTests: XCTestCase {
+class AuthPresenterTests: XCTestCase {
 
     var sut: AuthPresenterProtocol!
     var view: AuthViewMock!
@@ -24,6 +24,7 @@ class AuthTests: XCTestCase {
 
     override func tearDown() {
         sut = nil
+        view = nil
         super.tearDown()
     }
     

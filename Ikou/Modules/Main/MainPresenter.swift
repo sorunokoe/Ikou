@@ -17,17 +17,20 @@ class MainPresenter: MainPresenterProtocol{
     
     private var profile: Profile?
     private var games = [Game]()
+    private var steamId: String?
     
-    init(interface: MainViewProtocol, router: MainWireframeProtocol, interactor: MainInputInteractorProtocol){
+    init(interface: MainViewProtocol, router: MainWireframeProtocol, interactor: MainInputInteractorProtocol, steamId: String){
         self.view = interface
         self.router = router
         self.interactor = interactor
+        self.steamId = steamId
     }
     
     // MARK: - Profile
     
     func loadProfile() {
-        interactor?.loadProfile()
+        guard let steamId = steamId else { return }
+        interactor?.loadProfile(steamId: steamId)
     }
     
     func getAvatar(completion: @escaping ((UIImage) -> Void)){
@@ -62,7 +65,8 @@ class MainPresenter: MainPresenterProtocol{
     // MARK: - Owned Games
     
     func loadOwnedGames() {
-        interactor?.loadOwnedGames()
+        guard let steamId = steamId else { return }
+        interactor?.loadOwnedGames(steamId: steamId)
     }
     
     func getGames() -> [Game]{
@@ -71,8 +75,7 @@ class MainPresenter: MainPresenterProtocol{
     
 }
 extension MainPresenter: MainOutputInteractorProtocol{
-    
-    func didLoadProfile(profile: Profile) {
+    func didLoadProfile(profile: Profile?) {
         self.profile = profile
         view?.didLoadProfile()
     }
