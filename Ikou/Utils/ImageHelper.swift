@@ -9,12 +9,25 @@
 import Foundation
 import UIKit
 
-protocol ImageHelperProtocol{
-    func getImageBy(url: String, completion: @escaping ((UIImage) -> Void))
+enum ImageType{
+    case avatar(url: String)
+    case ownedGame(appid: String, hash: String)
 }
-class ImageHelper: ImageHelperProtocol{
-    func getImageBy(url: String, completion: @escaping ((UIImage) -> Void)) {
-        guard let url = URL(string: url) else { return }
+extension ImageType{
+    var imageUrl: URL?{
+        switch self {
+        case .avatar(let url):
+            return URL(string: url)
+        case .ownedGame(let appid, let hash):
+            let url = "http://media.steampowered.com/steamcommunity/public/images/apps/\(appid)/\(hash).jpg"
+            return URL(string: url)
+        }
+    }
+}
+class ImageHelper{
+    
+    static func getImageBy(url: ImageType, completion: @escaping ((UIImage) -> Void)) {
+        guard let url = url.imageUrl else { return }
         getData(from: url) { data, _, error in
             guard let data = data, error == nil else { return }
             DispatchQueue.main.async{
@@ -25,7 +38,7 @@ class ImageHelper: ImageHelperProtocol{
         }
     }
     
-    private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    private static func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
     

@@ -10,7 +10,7 @@ import Foundation
 
 class TimeAndDateHelper{
     
-    func getTimeFrom(unix: Int) -> String{
+    static func getTimeFrom(unix: Int) -> String{
         let date = Date(timeIntervalSince1970: TimeInterval(unix))
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = DateFormatter.Style.medium

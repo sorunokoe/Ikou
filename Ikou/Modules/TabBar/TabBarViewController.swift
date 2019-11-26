@@ -14,8 +14,8 @@ class TabBarViewController: UITabBarController, TabBarViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UITabBar.appearance().barTintColor = .white
-        UITabBar.appearance().layer.borderWidth = 0.0
+        UITabBar.appearance().barTintColor = Constants.Colors.block(view: self.view).color
+        UITabBar.appearance().layer.borderWidth = 20.0
         UITabBar.appearance().clipsToBounds = true
     }
     

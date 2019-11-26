@@ -11,6 +11,7 @@ import Moya
 
 enum SteamAPI{
     case profile(steamId: String)
+    case ownedGames(steamId: String)
 }
 
 extension SteamAPI: TargetType{
@@ -22,12 +23,14 @@ extension SteamAPI: TargetType{
         switch self {
         case .profile(_):
             return "ISteamUser/GetPlayerSummaries/v0002/"
+        case .ownedGames(_):
+            return "IPlayerService/GetOwnedGames/v0001/"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .profile(_):
+        case .profile(_), .ownedGames(_):
             return .get
         }
     }
@@ -43,6 +46,13 @@ extension SteamAPI: TargetType{
                 "key": Constants.Resources.Strings.steamKey.rawValue,
                 "steamids": steamId,
                 "format": "json"
+            ], encoding: URLEncoding.queryString)
+        case .ownedGames(let steamId):
+            return .requestParameters(parameters: [
+                "key": Constants.Resources.Strings.steamKey.rawValue,
+                "steamid": steamId,
+                "format": "json",
+                "include_appinfo": true
             ], encoding: URLEncoding.queryString)
         }
     }

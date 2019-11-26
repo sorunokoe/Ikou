@@ -16,6 +16,7 @@ protocol MainViewProtocol: class {
     var presenter: MainPresenterProtocol? { get set }
     
     func didLoadProfile()
+    func didLoadOwnedGames()
     func showError(_ error: String)
 }
 protocol MainPresenterProtocol: class{
@@ -27,13 +28,18 @@ protocol MainPresenterProtocol: class{
     func getUserStatus() -> String?
     func getLastTimeOnline() -> String?
     func getPrivateOrPublicProfile() -> String?
+    
+    func loadOwnedGames()
+    func getGames() -> [Game]
 }
 protocol MainInputInteractorProtocol: class{
     var presenter: MainOutputInteractorProtocol? { get set }
     
-    func loadProfile()
+    func loadProfile(steamId: String)
+    func loadOwnedGames(steamId: String)
 }
 protocol MainOutputInteractorProtocol: class{
-    func didLoadProfile(profile: Profile)
+    func didLoadProfile(profile: Profile?)
+    func didLoadGames(games: [Game])
     func didLoadWith(error: String)
 }
