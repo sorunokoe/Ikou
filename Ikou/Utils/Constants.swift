@@ -17,14 +17,12 @@ struct Constants{
         case authUrl = "https://steamcommunity.com/login/home/"
     }
     
-    struct Resources{
-        enum Images: String{
-            case gameIcon = "game-icon"
-            case gameIconTapped = "game-icon-ed"
-        }
-        enum Strings: String{
-            case steamKey = "1D15B982E6347473E573D94F9B9F0F5E"
-        }
+    enum Images: String{
+        case gameIcon = "game-icon"
+        case gameIconTapped = "game-icon-ed"
+    }
+    enum Strings: String{
+        case steamKey = "1D15B982E6347473E573D94F9B9F0F5E"
     }
     
     enum Colors{
@@ -41,7 +39,7 @@ struct Constants{
                     case .unspecified, .dark:
                         return UIColor(hex: "#1d1d1d")
                     case .light:
-                        return .white
+                        return UIColor(hex: "#EBEBEB")
                     default:
                         return UIColor(hex: "#1d1d1d")
                     }

@@ -24,8 +24,8 @@ struct Profile: Codable{
     var timecreated: Int
     var personastateflags: Int
     var loccountrycode: String
-    var locstatecode: String
-    var loccityid: Int
+    var locstatecode: String?
+    var loccityid: Int?
     
     enum CodingKeys: CodingKey{
         case steamid
@@ -82,8 +82,8 @@ struct Profile: Codable{
         timecreated = try container.decode(Int.self, forKey: .timecreated)
         personastateflags = try container.decode(Int.self, forKey: .personastateflags)
         loccountrycode = try container.decode(String.self, forKey: .loccountrycode)
-        locstatecode = try container.decode(String.self, forKey: .locstatecode)
-        loccityid = try container.decode(Int.self, forKey: .loccityid)
+        locstatecode = try? container.decode(String.self, forKey: .locstatecode)
+        loccityid = try? container.decode(Int.self, forKey: .loccityid)
     }
     
 }

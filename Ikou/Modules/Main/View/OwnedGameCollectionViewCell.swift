@@ -49,6 +49,7 @@ extension OwnedGameCollectionViewCell{
     }
     private func setViews() {
         self.layer.cornerRadius = 20
+        self.makeShadow()
         logoImageView = {
             let imageView = UIImageView()
             imageView.clipsToBounds = true
@@ -60,10 +61,8 @@ extension OwnedGameCollectionViewCell{
             let view = UIView()
             view.clipsToBounds = true
             view.layer.cornerRadius = 10
+            view.isHidden = true
             view.backgroundColor = Constants.Colors.block(view: view).color
-            view.layer.shadowColor = UIColor.black.cgColor
-            view.layer.shadowPath = UIBezierPath(rect: view.frame).cgPath
-            view.layer.shadowOffset = CGSize(width: 0, height: 0)
             return view
         }()
         titleLabel = {
@@ -84,18 +83,18 @@ extension OwnedGameCollectionViewCell{
             $0.top.equalToSuperview()
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
-            $0.bottom.equalTo(titleView.snp.top).offset(20)
+            $0.bottom.equalTo(titleView.snp.top).offset(10)
         }
         titleView.snp.makeConstraints {
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
-            $0.top.equalTo(titleLabel.snp.top).offset(-15)
+            $0.top.equalTo(titleLabel.snp.top).offset(-10)
             $0.bottom.equalToSuperview()
         }
         titleLabel.snp.makeConstraints {
             $0.left.equalToSuperview().offset(10)
             $0.right.equalToSuperview().offset(-10)
-            $0.bottom.equalToSuperview().offset(-15)
+            $0.bottom.equalToSuperview().offset(-10)
         }
     }
     

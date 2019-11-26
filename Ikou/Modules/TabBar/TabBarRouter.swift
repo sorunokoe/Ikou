@@ -28,8 +28,8 @@ class TabBarRouter: TabBarWireframeProtocol{
         return [mainPager]
     }
     private static func moduleImages() -> [UIImage]{
-        let gameIconImage = UIImage(named: Constants.Resources.Images.gameIcon.rawValue) ?? UIImage()
-        let gameIconImageTapped = UIImage(named: Constants.Resources.Images.gameIconTapped.rawValue) ?? UIImage()
+        let gameIconImage = UIImage(named: Constants.Images.gameIcon.rawValue) ?? UIImage()
+        let gameIconImageTapped = UIImage(named: Constants.Images.gameIconTapped.rawValue) ?? UIImage()
         return [gameIconImage, gameIconImageTapped]
     }
     

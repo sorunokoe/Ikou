@@ -43,13 +43,13 @@ extension SteamAPI: TargetType{
         switch self {
         case .profile(let steamId):
             return .requestParameters(parameters: [
-                "key": Constants.Resources.Strings.steamKey.rawValue,
+                "key": Constants.Strings.steamKey.rawValue,
                 "steamids": steamId,
                 "format": "json"
             ], encoding: URLEncoding.queryString)
         case .ownedGames(let steamId):
             return .requestParameters(parameters: [
-                "key": Constants.Resources.Strings.steamKey.rawValue,
+                "key": Constants.Strings.steamKey.rawValue,
                 "steamid": steamId,
                 "format": "json",
                 "include_appinfo": true

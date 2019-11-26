@@ -20,7 +20,7 @@ protocol AuthPresenterProtocol: class{
     var interactor: AuthInteractorInputProtocol? { get set }
     
     func getAuthURL()
-    func retrieveSteamIdFrom(_ url: String?)
+    func retrieveSteamIdFrom(cookies: [HTTPCookie])
 }
 protocol AuthInteractorInputProtocol: class{
     var presenter: AuthPresenterProtocol?  { get set }

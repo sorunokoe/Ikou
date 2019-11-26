@@ -51,7 +51,10 @@ extension AuthViewController{
 }
 extension AuthViewController: UIWebViewDelegate{
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {        presenter?.retrieveSteamIdFrom(request.url?.absoluteString)
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
+        if let cookies = HTTPCookieStorage.shared.cookies{
+            presenter?.retrieveSteamIdFrom(cookies: cookies)
+        }
         return true
     }
     

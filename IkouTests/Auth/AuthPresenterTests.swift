@@ -33,21 +33,6 @@ class AuthPresenterTests: XCTestCase {
         XCTAssertTrue(view.isItGetUrl)
     }
     
-    func test_retrieveCorrectStreamIDAndSetToCache(){
-        let cacheHelper = CacheHelper()
-        let url = "https://somewebsitedomain.com/profiles/76561198876056556/some"
-        sut.retrieveSteamIdFrom(url)
-        XCTAssertEqual(cacheHelper.get(.steamID), "76561198876056556")
-    }
-    
-    func test_retrieveWrongStreamID(){
-        let cacheHelper = CacheHelper()
-        cacheHelper.remove(.steamID)
-        let url = "https://somewebsitedomain.com/profiles/some/123/421/2121?go_to"
-        sut.retrieveSteamIdFrom(url)
-        XCTAssertEqual(cacheHelper.get(.steamID), nil)
-    }
-    
 }
 class AuthViewMock: AuthViewProtocol{
     var isItGetUrl = false

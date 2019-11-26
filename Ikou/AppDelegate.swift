@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let cacheHelper = CacheHelper()
         var view: UIViewController!
+
         if cacheHelper.get(.steamID) == nil{
             view = AuthRouter.createModule()
         }else{

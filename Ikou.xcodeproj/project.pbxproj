@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		02F8EEF31DE2994F8E87B139 /* Pods_Ikou.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3239AC8D737F612EC129445B /* Pods_Ikou.framework */; };
+		1F056111238D7773005452B0 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F056110238D7772005452B0 /* UIView+Extension.swift */; };
+		1F056114238D81DB005452B0 /* LastSessionsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F056113238D81DB005452B0 /* LastSessionsProtocols.swift */; };
+		1F056116238D8253005452B0 /* LastSessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F056115238D8253005452B0 /* LastSessionsViewController.swift */; };
+		1F056119238D832D005452B0 /* LastSessionsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F056118238D832D005452B0 /* LastSessionsTableCell.swift */; };
+		1F05611B238D8A32005452B0 /* FriendResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05611A238D8A31005452B0 /* FriendResponse.swift */; };
+		1F05611D238D8A43005452B0 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05611C238D8A43005452B0 /* Friend.swift */; };
 		1F9E26DD2385118B006C6A2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9E26DC2385118B006C6A2F /* AppDelegate.swift */; };
 		1F9E26E62385118E006C6A2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F9E26E52385118E006C6A2F /* Assets.xcassets */; };
 		1F9E26E92385118E006C6A2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F9E26E72385118E006C6A2F /* LaunchScreen.storyboard */; };
@@ -32,9 +38,6 @@
 		1FF5D8C123886D1F00FD717B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8C023886D1F00FD717B /* String+Extension.swift */; };
 		1FF5D8C323886E7300FD717B /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8C223886E7300FD717B /* Profile.swift */; };
 		1FF5D8C62388711700FD717B /* ProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8C52388711700FD717B /* ProfileResponse.swift */; };
-		1FF5D8C92388729D00FD717B /* ProfileProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8C82388729D00FD717B /* ProfileProtocols.swift */; };
-		1FF5D8CB2388731D00FD717B /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8CA2388731D00FD717B /* ProfileRouter.swift */; };
-		1FF5D8CD2388737100FD717B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8CC2388737100FD717B /* ProfileViewController.swift */; };
 		1FF5D8CF2388741C00FD717B /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8CE2388741C00FD717B /* MainPresenter.swift */; };
 		1FF5D8D12388752700FD717B /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8D02388752700FD717B /* MainInteractor.swift */; };
 		1FF5D8D323887F3F00FD717B /* TimeAndDateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8D223887F3F00FD717B /* TimeAndDateHelper.swift */; };
@@ -61,6 +64,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F056110238D7772005452B0 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		1F056113238D81DB005452B0 /* LastSessionsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSessionsProtocols.swift; sourceTree = "<group>"; };
+		1F056115238D8253005452B0 /* LastSessionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSessionsViewController.swift; sourceTree = "<group>"; };
+		1F056118238D832D005452B0 /* LastSessionsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSessionsTableCell.swift; sourceTree = "<group>"; };
+		1F05611A238D8A31005452B0 /* FriendResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendResponse.swift; sourceTree = "<group>"; };
+		1F05611C238D8A43005452B0 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		1F9E26D92385118B006C6A2F /* Ikou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ikou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F9E26DC2385118B006C6A2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F9E26E52385118E006C6A2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,9 +98,6 @@
 		1FF5D8C023886D1F00FD717B /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		1FF5D8C223886E7300FD717B /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		1FF5D8C52388711700FD717B /* ProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResponse.swift; sourceTree = "<group>"; };
-		1FF5D8C82388729D00FD717B /* ProfileProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProtocols.swift; sourceTree = "<group>"; };
-		1FF5D8CA2388731D00FD717B /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
-		1FF5D8CC2388737100FD717B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1FF5D8CE2388741C00FD717B /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		1FF5D8D02388752700FD717B /* MainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
 		1FF5D8D223887F3F00FD717B /* TimeAndDateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAndDateHelper.swift; sourceTree = "<group>"; };
@@ -132,6 +138,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F056112238D81CE005452B0 /* LastSessions */ = {
+			isa = PBXGroup;
+			children = (
+				1F056117238D8322005452B0 /* View */,
+				1F056113238D81DB005452B0 /* LastSessionsProtocols.swift */,
+				1F056115238D8253005452B0 /* LastSessionsViewController.swift */,
+			);
+			path = LastSessions;
+			sourceTree = "<group>";
+		};
+		1F056117238D8322005452B0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F056118238D832D005452B0 /* LastSessionsTableCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1F9E26D02385118B006C6A2F = {
 			isa = PBXGroup;
 			children = (
@@ -181,7 +205,7 @@
 		1F9E26FE238513A8006C6A2F /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				1FF5D8C72388729000FD717B /* Profile */,
+				1F056112238D81CE005452B0 /* LastSessions */,
 				1F9E271F23856322006C6A2F /* TabBar */,
 				1F9E271A23856112006C6A2F /* Main */,
 				1F9E2700238515D1006C6A2F /* Auth */,
@@ -226,6 +250,7 @@
 				1FF5D8C4238870E900FD717B /* Responses */,
 				1FF5D8C223886E7300FD717B /* Profile.swift */,
 				1FF5D8DB23893D8200FD717B /* Game.swift */,
+				1F05611C238D8A43005452B0 /* Friend.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -310,6 +335,7 @@
 			children = (
 				1F9E27292385689C006C6A2F /* UIViewController+Extension.swift */,
 				1F9E272B238569C9006C6A2F /* UIColor+Extension.swift */,
+				1F056110238D7772005452B0 /* UIView+Extension.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -320,18 +346,9 @@
 				1FF5D8D923893CFD00FD717B /* SteamResponse.swift */,
 				1FF5D8C52388711700FD717B /* ProfileResponse.swift */,
 				1FF5D8D723893CD600FD717B /* OwnedGamesResponse.swift */,
+				1F05611A238D8A31005452B0 /* FriendResponse.swift */,
 			);
 			path = Responses;
-			sourceTree = "<group>";
-		};
-		1FF5D8C72388729000FD717B /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				1FF5D8C82388729D00FD717B /* ProfileProtocols.swift */,
-				1FF5D8CA2388731D00FD717B /* ProfileRouter.swift */,
-				1FF5D8CC2388737100FD717B /* ProfileViewController.swift */,
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 		1FF5D8DD2389417700FD717B /* View */ = {
@@ -565,25 +582,28 @@
 				1F9E26DD2385118B006C6A2F /* AppDelegate.swift in Sources */,
 				1FF5D8C123886D1F00FD717B /* String+Extension.swift in Sources */,
 				1F9E27212385636A006C6A2F /* TabBarProtocols.swift in Sources */,
-				1FF5D8CD2388737100FD717B /* ProfileViewController.swift in Sources */,
+				1F056111238D7773005452B0 /* UIView+Extension.swift in Sources */,
 				1F9E272C238569C9006C6A2F /* UIColor+Extension.swift in Sources */,
 				1F9E271E2385620C006C6A2F /* MainViewController.swift in Sources */,
-				1FF5D8CB2388731D00FD717B /* ProfileRouter.swift in Sources */,
+				1F05611B238D8A32005452B0 /* FriendResponse.swift in Sources */,
 				1F9E270D2385192C006C6A2F /* AuthInteractor.swift in Sources */,
 				1FF5D8D823893CD600FD717B /* OwnedGamesResponse.swift in Sources */,
 				1F9E27282385678C006C6A2F /* MainRouter.swift in Sources */,
+				1F056116238D8253005452B0 /* LastSessionsViewController.swift in Sources */,
 				1FF5D8DF238941D100FD717B /* OwnedGameCollectionViewCell.swift in Sources */,
+				1F05611D238D8A43005452B0 /* Friend.swift in Sources */,
 				1F9E272E23856A81006C6A2F /* TabBarPresenter.swift in Sources */,
 				1FF5D8C62388711700FD717B /* ProfileResponse.swift in Sources */,
 				1FF5D8DC23893D8200FD717B /* Game.swift in Sources */,
 				1F9E270623851771006C6A2F /* AuthViewController.swift in Sources */,
+				1F056119238D832D005452B0 /* LastSessionsTableCell.swift in Sources */,
 				1F9E2704238516D9006C6A2F /* AuthRouter.swift in Sources */,
 				1F9E271923855EB1006C6A2F /* CacheHelper.swift in Sources */,
-				1FF5D8C92388729D00FD717B /* ProfileProtocols.swift in Sources */,
 				1F9E271323855621006C6A2F /* Constants.swift in Sources */,
 				1F9E271623855C14006C6A2F /* SteamAPI.swift in Sources */,
 				1F9E270B23851909006C6A2F /* AuthPresenter.swift in Sources */,
 				1F9E2723238563FA006C6A2F /* TabBarViewController.swift in Sources */,
+				1F056114238D81DB005452B0 /* LastSessionsProtocols.swift in Sources */,
 				1F9E271C23856127006C6A2F /* MainProtocols.swift in Sources */,
 				1F9E2702238515E2006C6A2F /* AuthProtocols.swift in Sources */,
 				1FF5D8D12388752700FD717B /* MainInteractor.swift in Sources */,

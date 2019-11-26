@@ -9,6 +9,9 @@
 import UIKit
 
 extension MainViewController{
+    enum CellIdentifier: String{
+        case OwnedGamesCellIdentifier
+    }
     // MARK: - UI
     func configUI(){
         setViews()
@@ -24,8 +27,8 @@ extension MainViewController{
         profileView = {
             let view = UIView()
             view.layer.cornerRadius = 20
-            view.clipsToBounds = true
             view.backgroundColor = Constants.Colors.block(view: view).color
+            view.makeShadow()
             return view
         }()
         avatarImageView = {
@@ -81,7 +84,7 @@ extension MainViewController{
         }()
         ownedGamesCollectionView = {
             let layout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSize(width: 280, height: 120)
+            layout.itemSize = CGSize(width: 200, height: 100)
             layout.scrollDirection = .horizontal
             layout.minimumLineSpacing = 20
             let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
@@ -107,7 +110,7 @@ extension MainViewController{
     }
     func setConstrains(){
         profileView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(100)
+            $0.top.equalToSuperview().offset(self.topDistance)
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
             $0.bottom.equalTo(lineView.snp.bottom).offset(20)
@@ -149,7 +152,7 @@ extension MainViewController{
             $0.top.equalTo(profileView.snp.bottom).offset(50)
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
-            $0.height.equalTo(200)
+            $0.height.equalTo(180)
         }
         ownedGamesTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()

@@ -38,10 +38,6 @@ class MainViewController: UIViewController{
 }
 extension MainViewController: MainViewProtocol{
     
-    enum CellIdentifier: String{
-        case OwnedGamesCellIdentifier
-    }
-    
     func didLoadProfile() {
         presenter?.getAvatar(completion: {[weak self] image in
             guard let `self` = self else { return }
