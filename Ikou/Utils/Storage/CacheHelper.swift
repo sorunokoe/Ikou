@@ -19,7 +19,7 @@ protocol CacheHelperProtocol{
 }
 class CacheHelper: CacheHelperProtocol{
     
-    let keychain = KeychainSwift()
+    private let keychain = KeychainSwift()
     
     func set(key: CacheKeys, value: String) {
         switch key {

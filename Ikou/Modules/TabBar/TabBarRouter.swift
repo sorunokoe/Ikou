@@ -23,14 +23,23 @@ class TabBarRouter: TabBarWireframeProtocol{
     }
     private static func combineModules() -> [UIViewController]{
         let icons = moduleImages()
+        
         let mainPager = MainRouter.createModule()
-        mainPager.setTabBarItem(image: icons[0], selectedImage: icons[1], title: "Profile")
-        return [mainPager]
+        mainPager.setTabBarItem(image: icons[0], title: "Profile", tag: 0)
+        
+        let gamesPager = GamesRouter.createModule()
+        gamesPager.setTabBarItem(image: icons[1], title: "Games", tag: 1)
+       
+       let sessionsPager = GamesRouter.createModule()
+       sessionsPager.setTabBarItem(image: icons[2], title: "Sessions", tag: 2)
+        
+        return [mainPager, gamesPager, sessionsPager]
     }
     private static func moduleImages() -> [UIImage]{
-        let gameIconImage = UIImage(named: Constants.Images.gameIcon.rawValue) ?? UIImage()
-        let gameIconImageTapped = UIImage(named: Constants.Images.gameIconTapped.rawValue) ?? UIImage()
-        return [gameIconImage, gameIconImageTapped]
+        let profileIconImage = UIImage(named: Constants.Images.profileIconTapped.rawValue) ?? UIImage()
+        let gameIconImage = UIImage(named: Constants.Images.gameIconTapped.rawValue) ?? UIImage()
+        let sessionsIconImage = UIImage(named: Constants.Images.sessionsIcon.rawValue) ?? UIImage()
+        return [profileIconImage, gameIconImage, sessionsIconImage]
     }
     
 }

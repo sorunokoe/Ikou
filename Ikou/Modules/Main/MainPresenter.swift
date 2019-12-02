@@ -17,6 +17,8 @@ class MainPresenter: MainPresenterProtocol{
     
     private var profile: Profile?
     private var games = [Game]()
+    private var friends = [Friend]()
+    private var friendsProfile = [String: Profile]()
     private var steamId: String?
     
     init(interface: MainViewProtocol, router: MainWireframeProtocol, interactor: MainInputInteractorProtocol, steamId: String){
@@ -35,15 +37,14 @@ class MainPresenter: MainPresenterProtocol{
     
     func getAvatar(completion: @escaping ((UIImage) -> Void)){
         guard let profile = profile else { return }
-        ImageHelper.getImageBy(url: .avatar(url: profile.avatar), completion: completion)
+        ImageHelper.shared.getImageBy(url: .avatar(url: profile.avatar), completion: completion)
     }
     func getUsername() -> String{
         return profile?.personaname ?? ""
     }
     func getUserStatus() -> String?{
         guard let profile = profile else { return nil }
-        let status = ["Offline", "Online", "Busy", "Away", "Snooze", "looking to trade", "looking to play"]
-        return status[profile.personastate]
+        return Constants.Steam.status[profile.personastate]
     }
     
     func getLastTimeOnline() -> String?{
@@ -73,8 +74,32 @@ class MainPresenter: MainPresenterProtocol{
         return games
     }
     
+    // MARK: - Friends
+    
+    func loadFriends() {
+        guard let steamId = steamId else { return }
+        interactor?.loadFriends(steamId: steamId)
+    }
+    
+    func getFriends() -> [Profile] {
+        let friends = Array(friendsProfile.values)
+        return friends
+    }
+    
+    func loadProfileOf(friend: Friend){
+        if friendsProfile[friend.steamid] != nil{
+            view?.didLoadFriends()
+            return
+        }
+        interactor?.loadProfileOf(friend: friend, completion: {[weak self] profile in
+            self?.friendsProfile[friend.steamid] = profile
+            self?.view?.didLoadFriends()
+        })
+    }
+    
 }
 extension MainPresenter: MainOutputInteractorProtocol{
+    
     func didLoadProfile(profile: Profile?) {
         self.profile = profile
         view?.didLoadProfile()
@@ -85,8 +110,20 @@ extension MainPresenter: MainOutputInteractorProtocol{
         view?.didLoadOwnedGames()
     }
     
-    func didLoadWith(error: String) {
-        view?.showError(error)
+    func didLoadFriends(friends: [Friend]) {
+        self.friends = friends
+        for friend in friends{
+            loadProfileOf(friend: friend)
+        }
+    }
+    
+    func didLoadWith(error: SteamError) {
+        switch error {
+        case .network(let error):
+            view?.showError(error.localizedDescription)
+        default:
+            break
+        }
     }
     
 }

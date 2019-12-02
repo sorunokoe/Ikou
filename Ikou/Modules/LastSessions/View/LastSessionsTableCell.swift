@@ -48,7 +48,7 @@ extension LastSessionsTableCell{
     }
     
     private func setViews(){
-        self.backgroundColor = Constants.Colors.block(view: self).color
+        self.backgroundColor = Constants.Colors.block.color
         self.layer.cornerRadius = 20
         logoImageView = {
             let imageView = UIImageView()
@@ -60,13 +60,13 @@ extension LastSessionsTableCell{
         titleLabel = {
             let label = UILabel()
             label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
-            label.textColor = Constants.Colors.title(view: label).color
+            label.textColor = Constants.Colors.title.color
             return label
         }()
         lastPlayedLabel = {
             let label = UILabel()
             label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-            label.textColor = Constants.Colors.title(view: label).color
+            label.textColor = Constants.Colors.title.color
             return label
         }()
     }

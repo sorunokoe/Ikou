@@ -7,6 +7,7 @@
 //
 
 import Moya
+import RxSwift
 
 class MainInteractor: MainInputInteractorProtocol{
     
@@ -20,20 +21,19 @@ class MainInteractor: MainInputInteractorProtocol{
     func loadProfile(steamId: String) {
         guard let provider = provider else { return }
         provider.request(.profile(steamId: steamId)){[weak self] result in
-            guard let `self` = self else { return }
             switch result{
             case let .success(response):
                 let data = response.data
                 do{
                     let profileResponse = try JSONDecoder().decode(SteamResponse<ProfileResponse>.self, from: data)
                     if let profile = profileResponse.response.players.first{
-                        self.presenter?.didLoadProfile(profile: profile)
+                        self?.presenter?.didLoadProfile(profile: profile)
                     }
                 }catch{
-                    self.presenter?.didLoadWith(error: "Error while decoding body: \(error.localizedDescription)")
+                    self?.presenter?.didLoadWith(error: .decode)
                 }
             case let .failure(error):
-                self.presenter?.didLoadWith(error: error.failureReason ?? error.localizedDescription)
+                self?.presenter?.didLoadWith(error: .network(error: error))
             }
         }
     }
@@ -41,18 +41,55 @@ class MainInteractor: MainInputInteractorProtocol{
     func loadOwnedGames(steamId: String) {
         guard let provider = provider else { return }
         provider.request(.ownedGames(steamId: steamId)){[weak self] result in
-            guard let `self` = self else { return }
             switch result{
             case let .success(response):
                 let data = response.data
                 do{
                     let ownedGamesResponse = try JSONDecoder().decode(SteamResponse<OwnedGamesResponse>.self, from: data)
-                    self.presenter?.didLoadGames(games: ownedGamesResponse.response.games)
+                    self?.presenter?.didLoadGames(games: ownedGamesResponse.response.games)
                 }catch{
-                    self.presenter?.didLoadWith(error: "Error while decoding body: \(error.localizedDescription)")
+                    self?.presenter?.didLoadWith(error: .decode)
                 }
             case let .failure(error):
-                self.presenter?.didLoadWith(error: error.failureReason ?? error.localizedDescription)
+                self?.presenter?.didLoadWith(error: .network(error: error))
+            }
+        }
+    }
+    
+    func loadFriends(steamId: String) {
+        guard let provider = provider else { return }
+        provider.request(.friends(steamId: steamId)) {[weak self] result in
+            switch result{
+            case let .success(response):
+                let data = response.data
+                do{
+                    let friendsResponse = try JSONDecoder().decode(FriendsResponse.self, from: data)
+                    self?.presenter?.didLoadFriends(friends: friendsResponse.friendslist.friends)
+                }catch{
+                    self?.presenter?.didLoadWith(error: .decode)
+                }
+            case let .failure(error):
+                self?.presenter?.didLoadWith(error: .network(error: error))
+            }
+        }
+    }
+    
+    func loadProfileOf(friend: Friend, completion: @escaping ((Profile) -> Void)) {
+        guard let provider = provider else { return }
+        provider.request(.profile(steamId: friend.steamid)){[weak self] result in
+            switch result{
+            case let .success(response):
+                let data = response.data
+                do{
+                    let profileResponse = try JSONDecoder().decode(SteamResponse<ProfileResponse>.self, from: data)
+                    if let profile = profileResponse.response.players.first{
+                        completion(profile)
+                    }
+                }catch{
+                    self?.presenter?.didLoadWith(error: .decode)
+                }
+            case let .failure(error):
+                self?.presenter?.didLoadWith(error: .network(error: error))
             }
         }
     }

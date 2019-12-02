@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct Friend: Codable{
     
     var steamid: String

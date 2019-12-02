@@ -17,6 +17,8 @@ class MainViewController: UIViewController{
     var presenter: MainPresenterProtocol?
     
     // MARK: - UI Properties
+    var scrollView: UIScrollView!
+    var mainStackView: UIStackView!
     var profileView: UIView!
     var avatarImageView: UIImageView!
     var usernameLabel: UILabel!
@@ -27,17 +29,20 @@ class MainViewController: UIViewController{
     var ownedGamesView: UIView!
     var ownedGamesTitleLabel: UILabel!
     var ownedGamesCollectionView: UICollectionView!
+    var friendsView: UIView!
+    var friendsTitleLabel: UILabel!
+    var friendsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
         presenter?.loadProfile()
         presenter?.loadOwnedGames()
+        presenter?.loadFriends()
     }
     
 }
 extension MainViewController: MainViewProtocol{
-    
     func didLoadProfile() {
         presenter?.getAvatar(completion: {[weak self] image in
             guard let `self` = self else { return }
@@ -51,8 +56,11 @@ extension MainViewController: MainViewProtocol{
     func didLoadOwnedGames() {
         self.ownedGamesCollectionView.reloadData()
     }
+    func didLoadFriends() {
+        self.friendsTableView.reloadData()
+    }
     
     func showError(_ error: String) {
-        print(error)
+        // TODO: Show Error
     }
 }

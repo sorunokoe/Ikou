@@ -11,6 +11,7 @@ import UIKit
 extension MainViewController{
     enum CellIdentifier: String{
         case OwnedGamesCellIdentifier
+        case FriendsCellIdentifier
     }
     // MARK: - UI
     func configUI(){
@@ -19,16 +20,32 @@ extension MainViewController{
         setConstrains()
     }
     func setViews(){
-        self.view.backgroundColor = Constants.Colors.background(view: self.view).color
+        self.navigationItem.title = "Steam Profile"
+        self.view.backgroundColor = Constants.Colors.background.color
         setProfileView()
         setOwnedGamesView()
+        setFriends()
+        scrollView = {
+            let scrollView = UIScrollView()
+            scrollView.showsVerticalScrollIndicator = false
+            scrollView.showsHorizontalScrollIndicator = false
+            return scrollView
+        }()
+        mainStackView = {
+            let stackView = UIStackView(arrangedSubviews: [profileView, ownedGamesView, friendsView])
+            stackView.axis = .vertical
+            stackView.alignment = .fill
+            stackView.distribution = .fill
+            stackView.spacing = 30
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            return stackView
+        }()
     }
-    func setProfileView(){
+    private func setProfileView(){
         profileView = {
             let view = UIView()
             view.layer.cornerRadius = 20
-            view.backgroundColor = Constants.Colors.block(view: view).color
-            view.makeShadow()
+            view.backgroundColor = Constants.Colors.block.color
             return view
         }()
         avatarImageView = {
@@ -40,7 +57,7 @@ extension MainViewController{
         }()
         usernameLabel = {
             let label = UILabel()
-            label.textColor = Constants.Colors.title(view: label).color
+            label.textColor = Constants.Colors.title.color
             label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
             return label
         }()
@@ -64,21 +81,22 @@ extension MainViewController{
         }()
         lineView = {
             let view = UIView()
+            view.isHidden = true
             view.layer.cornerRadius = 2
             view.clipsToBounds = true
             view.backgroundColor = .darkGray
             return view
         }()
     }
-    func setOwnedGamesView(){
+    private func setOwnedGamesView(){
         ownedGamesView = {
             let view = UIView()
             return view
         }()
         ownedGamesTitleLabel = {
             let label = UILabel()
-            label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-            label.textColor = Constants.Colors.title(view: label).color
+            label.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+            label.textColor = Constants.Colors.title.color
             label.text = "Games"
             return label
         }()
@@ -97,23 +115,67 @@ extension MainViewController{
             return collectionView
         }()
     }
-    func addViews(){
-        self.view.addSubview(profileView)
+    private func setFriends(){
+        friendsView = {
+            let view = UIView()
+            view.layer.cornerRadius = 20.0
+            view.backgroundColor = Constants.Colors.block.color
+            return view
+        }()
+        friendsTitleLabel = {
+            let label = UILabel()
+            label.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+            label.textColor = Constants.Colors.title.color
+            label.text = "Friends"
+            return label
+        }()
+        friendsTableView = {
+            let tableView = UITableView()
+            tableView.backgroundColor = .clear
+            tableView.register(FriendsTableViewCell.self, forCellReuseIdentifier: CellIdentifier.FriendsCellIdentifier.rawValue)
+            tableView.delegate = self
+            tableView.dataSource = self
+            tableView.separatorStyle = .none
+            return tableView
+        }()
+    }
+    private func addViews(){
+        self.view.addSubview(scrollView)
+        self.scrollView.addSubview(mainStackView)
         [avatarImageView, usernameLabel, statusLabel,
          lastOnlineLabel, profileTypeLabel, lineView].forEach{
             self.profileView.addSubview($0)
         }
-        self.view.addSubview(ownedGamesView)
         [ownedGamesTitleLabel, ownedGamesCollectionView].forEach{
             self.ownedGamesView.addSubview($0)
         }
+        [friendsTitleLabel, friendsTableView].forEach{
+            self.friendsView.addSubview($0)
+        }
     }
-    func setConstrains(){
-        profileView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(self.topDistance)
+    private func setConstrains(){
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        mainStackView.snp.makeConstraints {
+            $0.top.equalToSuperview()
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
-            $0.bottom.equalTo(lineView.snp.bottom).offset(20)
+            $0.bottom.equalToSuperview()
+            
+            $0.width.equalToSuperview()
+        }
+        setProfileConstrain()
+        setOwnedGamesConstrain()
+        setFriendsConstrain()
+    }
+    
+    private func setProfileConstrain(){
+        profileView.snp.makeConstraints {
+//            $0.top.equalToSuperview().offset(self.topDistance+20)
+//            $0.left.equalToSuperview().offset(20)
+//            $0.right.equalToSuperview().offset(-20)
+            $0.height.equalTo(140)
         }
         avatarImageView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(20)
@@ -147,12 +209,13 @@ extension MainViewController{
             $0.height.equalTo(2)
             $0.centerX.equalToSuperview()
         }
-        
+    }
+    private func setOwnedGamesConstrain(){
         ownedGamesView.snp.makeConstraints {
-            $0.top.equalTo(profileView.snp.bottom).offset(50)
+//            $0.top.equalTo(profileView.snp.bottom).offset(50)
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
-            $0.height.equalTo(180)
+            $0.height.equalTo(140)
         }
         ownedGamesTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -160,7 +223,26 @@ extension MainViewController{
             $0.right.equalToSuperview().offset(-20)
         }
         ownedGamesCollectionView.snp.makeConstraints {
-            $0.top.equalTo(ownedGamesTitleLabel.snp.bottom)
+            $0.top.equalTo(ownedGamesTitleLabel.snp.bottom).offset(15)
+            $0.left.equalToSuperview()
+            $0.right.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+    }
+    private func setFriendsConstrain(){
+        friendsView.snp.makeConstraints {
+//            $0.top.equalTo(ownedGamesView.snp.bottom).offset(20)
+            $0.left.equalToSuperview().offset(20)
+            $0.right.equalToSuperview().offset(-20)
+            $0.height.equalTo(500)
+        }
+        friendsTitleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20)
+            $0.left.equalToSuperview().offset(20)
+            $0.right.equalToSuperview().offset(20)
+        }
+        friendsTableView.snp.makeConstraints {
+            $0.top.equalTo(friendsTitleLabel.snp.bottom).offset(20)
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
             $0.bottom.equalToSuperview()

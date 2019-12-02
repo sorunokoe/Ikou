@@ -25,7 +25,7 @@ class OwnedGameCollectionViewCell: UICollectionViewCell{
     }
     
     func set(game: Game){
-        ImageHelper.getImageBy(url: .ownedGame(appid: "\(game.appid)", hash: game.img_logo_url)) {[weak self] image in
+        ImageHelper.shared.getImageBy(url: .ownedGame(appid: "\(game.appid)", hash: game.img_logo_url)) {[weak self] image in
             self?.logoImageView.image = image
         }
         titleLabel.text = game.name
@@ -62,12 +62,12 @@ extension OwnedGameCollectionViewCell{
             view.clipsToBounds = true
             view.layer.cornerRadius = 10
             view.isHidden = true
-            view.backgroundColor = Constants.Colors.block(view: view).color
+            view.backgroundColor = Constants.Colors.block.color
             return view
         }()
         titleLabel = {
             let label = UILabel()
-            label.textColor = Constants.Colors.title(view: label).color
+            label.textColor = Constants.Colors.title.color
             label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
             label.adjustsFontSizeToFitWidth = true
             return label
