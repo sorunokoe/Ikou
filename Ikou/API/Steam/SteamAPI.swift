@@ -5,13 +5,14 @@
 //  Created by Salgara on 11/20/19.
 //  Copyright © 2019 Noa. All rights reserved.
 //
-//http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=1D15B982E6347473E573D94F9B9F0F5E&steamids=76561198876056556
+
 import Foundation
 import Moya
 
 enum SteamAPI{
     case profile(steamId: String)
     case ownedGames(steamId: String)
+    case friends(steamId: String)
 }
 
 extension SteamAPI: TargetType{
@@ -25,12 +26,14 @@ extension SteamAPI: TargetType{
             return "ISteamUser/GetPlayerSummaries/v0002/"
         case .ownedGames(_):
             return "IPlayerService/GetOwnedGames/v0001/"
+        case .friends(_):
+            return "ISteamUser/GetFriendList/v0001/"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .profile(_), .ownedGames(_):
+        case .profile(_), .ownedGames(_), .friends(_):
             return .get
         }
     }
@@ -53,6 +56,11 @@ extension SteamAPI: TargetType{
                 "steamid": steamId,
                 "format": "json",
                 "include_appinfo": true
+            ], encoding: URLEncoding.queryString)
+        case .friends(let steamId):
+            return .requestParameters(parameters: [
+                "key": Constants.Strings.steamKey.rawValue,
+                "steamid": steamId
             ], encoding: URLEncoding.queryString)
         }
     }

@@ -26,7 +26,9 @@ extension ImageType{
 }
 class ImageHelper{
     
-    static func getImageBy(url: ImageType, completion: @escaping ((UIImage) -> Void)) {
+    static var shared = ImageHelper()
+    
+    func getImageBy(url: ImageType, completion: @escaping ((UIImage) -> Void)) {
         guard let url = url.imageUrl else { return }
         getData(from: url) { data, _, error in
             guard let data = data, error == nil else { return }
@@ -38,7 +40,7 @@ class ImageHelper{
         }
     }
     
-    private static func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
     

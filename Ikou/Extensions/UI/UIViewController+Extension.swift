@@ -55,8 +55,8 @@ extension UIViewController {
              NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold)]
     }
     
-    public func setTabBarItem(image: UIImage, selectedImage: UIImage, title: String) {
-        tabBarItem = UITabBarItem.init(title: title, image: image, selectedImage: selectedImage)
+    public func setTabBarItem(image: UIImage, title: String, tag: Int) {
+        tabBarItem = UITabBarItem.init(title: title, image: image, tag: tag)
         tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0.0, vertical: -2.0)
     }
@@ -80,18 +80,6 @@ extension UIViewController {
     @objc
     func hideModalVC() {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    public var topDistance: CGFloat{
-         get{
-             if self.navigationController != nil && !self.navigationController!.navigationBar.isTranslucent{
-                 return 0
-             }else{
-                let barHeight=self.navigationController?.navigationBar.frame.height ?? 0
-                let statusBarHeight = UIApplication.shared.isStatusBarHidden ? CGFloat(0) : UIApplication.shared.statusBarFrame.height
-                return barHeight + statusBarHeight
-             }
-         }
     }
     
 }

@@ -20,22 +20,29 @@ struct Constants{
     enum Images: String{
         case gameIcon = "game-icon"
         case gameIconTapped = "game-icon-ed"
+        case profileIcon = "profile-icon"
+        case profileIconTapped = "profile-icon-ed"
+        case sessionsIcon = "sessions-icon"
     }
     enum Strings: String{
         case steamKey = "1D15B982E6347473E573D94F9B9F0F5E"
     }
+    enum Layout: CGFloat{
+        case avatarCornerRadius = 20.0
+    }
     
     enum Colors{
-        case background(view: UIView)
-        case title(view: UIView)
+        case background
+        case title
         case status
-        case block(view: UIView)
+        case block
         
         var color: UIColor{
             switch self {
-            case .background(let view):
+            case .background:
+                
                 if #available(iOS 12.0, *) {
-                    switch view.traitCollection.userInterfaceStyle{
+                    switch UIScreen.main.traitCollection.userInterfaceStyle{
                     case .unspecified, .dark:
                         return UIColor(hex: "#1d1d1d")
                     case .light:
@@ -48,9 +55,9 @@ struct Constants{
                 }
             case .status:
                 return .systemBlue
-            case .title(let view):
+            case .title:
                 if #available(iOS 12.0, *) {
-                    switch view.traitCollection.userInterfaceStyle{
+                    switch UIScreen.main.traitCollection.userInterfaceStyle{
                     case .unspecified, .dark:
                         return .white
                     case .light:
@@ -61,9 +68,9 @@ struct Constants{
                 } else {
                     return .black
                 }
-            case .block(let view):
+            case .block:
                 if #available(iOS 12.0, *) {
-                    switch view.traitCollection.userInterfaceStyle{
+                    switch UIScreen.main.traitCollection.userInterfaceStyle{
                     case .unspecified, .dark:
                         return UIColor(hex: "#242424")
                     case .light:
@@ -76,6 +83,10 @@ struct Constants{
                 }
             }
         }
+    }
+    
+    struct Steam{
+        static let status = ["Offline", "Online", "Busy", "Away", "Snooze", "looking to trade", "looking to play"]
     }
     
 }

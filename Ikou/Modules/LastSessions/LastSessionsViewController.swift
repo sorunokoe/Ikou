@@ -21,6 +21,4 @@ class LastSessionsViewController: UITableViewController, LastSessionsViewProtoco
         self.tableView.register(LastSessionsTableCell.self, forCellReuseIdentifier: CellIdentifier.LastSessionsCellIdentifier.rawValue)
     }
     
-    
-    
 }
