@@ -1,5 +1,5 @@
 # Ikou
-> Challange Taks from [funcodechallenge](https://funcodechallenge.com/]). Steam Interface.
+> Challange from [funcodechallenge](https://funcodechallenge.com/]). Steam Interface.
 
 [![Swift Version][swift-image]][swift-url]
 [![Build Status][travis-image]][travis-url]
@@ -11,11 +11,10 @@
 ![](Screenshots/logo.png)
 
 ## Features
-- [x] Feature 1
-- [x] Feature 2
-- [x] Feature 3
-- [x] Feature 4
-- [x] Feature 5
+- [x] Profile: status, private/public, last online
+- [x] Friends list
+- [x] Owned games
+- [x] Dark mode
 
 ## Requirements
 
@@ -23,21 +22,21 @@
 - Xcode 10.2.1
 
 ## Dependencies
-### Color
+#### Color
 - Hue
-### Keyboard
+#### Keyboard
 - IQKeyboardManagerSwift
-### Storage
+#### Storage
 - KeychainSwift
-### Network
+#### Network
 - Moya
-### Database
+#### Database
 - Realm
-### AutoLayout
+#### AutoLayout
 - SnapKit
 
 ## Screenshots
-![Main](Screenshots/main.png)
+![Profile](Screenshots/profile.png)
 ![Games](Screenshots/game.png)
 
 ## Design 
