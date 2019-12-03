@@ -62,6 +62,13 @@
 		1FF5D8E32389468400FD717B /* MainViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8E22389468400FD717B /* MainViewController+Extension.swift */; };
 		1FF5D8E923897A7700FD717B /* MainPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8E823897A7700FD717B /* MainPresenterTests.swift */; };
 		1FF5D8EB238980A300FD717B /* MainInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF5D8EA238980A300FD717B /* MainInteractorTests.swift */; };
+		1FF938942396992B00FABD15 /* GameProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF938932396992B00FABD15 /* GameProtocols.swift */; };
+		1FF93896239699B800FABD15 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF93895239699B800FABD15 /* GameViewController.swift */; };
+		1FF9389823969A4200FABD15 /* GameViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9389723969A4200FABD15 /* GameViewController+Extension.swift */; };
+		1FF9389A23969A6800FABD15 /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9389923969A6800FABD15 /* GamePresenter.swift */; };
+		1FF9389C23969A7E00FABD15 /* GameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9389B23969A7E00FABD15 /* GameInteractor.swift */; };
+		1FF9389E23969EB400FABD15 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9389D23969EB400FABD15 /* News.swift */; };
+		1FF938A02396A01800FABD15 /* NewsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9389F2396A01800FABD15 /* NewsResponse.swift */; };
 		5FDEBA997F790D78BEC8C88E /* Pods_IkouTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EC80A2BA42D1414D14A014 /* Pods_IkouTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +141,13 @@
 		1FF5D8E22389468400FD717B /* MainViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Extension.swift"; sourceTree = "<group>"; };
 		1FF5D8E823897A7700FD717B /* MainPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenterTests.swift; sourceTree = "<group>"; };
 		1FF5D8EA238980A300FD717B /* MainInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractorTests.swift; sourceTree = "<group>"; };
+		1FF938932396992B00FABD15 /* GameProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameProtocols.swift; sourceTree = "<group>"; };
+		1FF93895239699B800FABD15 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		1FF9389723969A4200FABD15 /* GameViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameViewController+Extension.swift"; sourceTree = "<group>"; };
+		1FF9389923969A6800FABD15 /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
+		1FF9389B23969A7E00FABD15 /* GameInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInteractor.swift; sourceTree = "<group>"; };
+		1FF9389D23969EB400FABD15 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		1FF9389F2396A01800FABD15 /* NewsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsResponse.swift; sourceTree = "<group>"; };
 		3239AC8D737F612EC129445B /* Pods_Ikou.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ikou.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0AC4C68D1F7CB32FF9E3878 /* Pods-IkouTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IkouTests.debug.xcconfig"; path = "Target Support Files/Pods-IkouTests/Pods-IkouTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B1EC80A2BA42D1414D14A014 /* Pods_IkouTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IkouTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +197,7 @@
 		1F5B00CF23958D5C00453C0F /* Games */ = {
 			isa = PBXGroup;
 			children = (
+				1FF938922396991000FABD15 /* Game */,
 				1F5B00DC239591E500453C0F /* View */,
 				1F5B00D023958D7F00453C0F /* GamesProtocols.swift */,
 				1F5B00D223958E2200453C0F /* GamesRouter.swift */,
@@ -300,6 +315,7 @@
 				1FF5D8C223886E7300FD717B /* Profile.swift */,
 				1FF5D8DB23893D8200FD717B /* Game.swift */,
 				1F05611C238D8A43005452B0 /* Friend.swift */,
+				1FF9389D23969EB400FABD15 /* News.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -398,6 +414,7 @@
 				1FF5D8C52388711700FD717B /* ProfileResponse.swift */,
 				1FF5D8D723893CD600FD717B /* OwnedGamesResponse.swift */,
 				1F05611A238D8A31005452B0 /* FriendResponse.swift */,
+				1FF9389F2396A01800FABD15 /* NewsResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -418,6 +435,18 @@
 				1FF5D8EA238980A300FD717B /* MainInteractorTests.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		1FF938922396991000FABD15 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				1FF938932396992B00FABD15 /* GameProtocols.swift */,
+				1FF93895239699B800FABD15 /* GameViewController.swift */,
+				1FF9389723969A4200FABD15 /* GameViewController+Extension.swift */,
+				1FF9389923969A6800FABD15 /* GamePresenter.swift */,
+				1FF9389B23969A7E00FABD15 /* GameInteractor.swift */,
+			);
+			path = Game;
 			sourceTree = "<group>";
 		};
 		78A4C41BDC22D0B905BE8F5E /* Pods */ = {
@@ -634,12 +663,15 @@
 				1F9E2725238564AD006C6A2F /* TabBarRouter.swift in Sources */,
 				1F9E26DD2385118B006C6A2F /* AppDelegate.swift in Sources */,
 				1FF5D8C123886D1F00FD717B /* String+Extension.swift in Sources */,
+				1FF938942396992B00FABD15 /* GameProtocols.swift in Sources */,
 				1F9E27212385636A006C6A2F /* TabBarProtocols.swift in Sources */,
 				1F056111238D7773005452B0 /* UIView+Extension.swift in Sources */,
 				1F9E272C238569C9006C6A2F /* UIColor+Extension.swift in Sources */,
 				1F9E271E2385620C006C6A2F /* MainViewController.swift in Sources */,
+				1FF9389C23969A7E00FABD15 /* GameInteractor.swift in Sources */,
 				1F05611B238D8A32005452B0 /* FriendResponse.swift in Sources */,
 				1F9E270D2385192C006C6A2F /* AuthInteractor.swift in Sources */,
+				1FF9389823969A4200FABD15 /* GameViewController+Extension.swift in Sources */,
 				1F5B00D323958E2200453C0F /* GamesRouter.swift in Sources */,
 				1F5B00D123958D7F00453C0F /* GamesProtocols.swift in Sources */,
 				1FF5D8D823893CD600FD717B /* OwnedGamesResponse.swift in Sources */,
@@ -652,6 +684,7 @@
 				1FF5D8DC23893D8200FD717B /* Game.swift in Sources */,
 				1F9E270623851771006C6A2F /* AuthViewController.swift in Sources */,
 				1F5B00E223959E9B00453C0F /* GamesHeaderView.swift in Sources */,
+				1FF9389E23969EB400FABD15 /* News.swift in Sources */,
 				1F056119238D832D005452B0 /* LastSessionsTableCell.swift in Sources */,
 				1F9E2704238516D9006C6A2F /* AuthRouter.swift in Sources */,
 				1F9E271923855EB1006C6A2F /* CacheHelper.swift in Sources */,
@@ -666,15 +699,18 @@
 				1F9E271C23856127006C6A2F /* MainProtocols.swift in Sources */,
 				1F9E2702238515E2006C6A2F /* AuthProtocols.swift in Sources */,
 				1FF5D8D12388752700FD717B /* MainInteractor.swift in Sources */,
+				1FF93896239699B800FABD15 /* GameViewController.swift in Sources */,
 				1F5B00D92395904C00453C0F /* GamesInteractor.swift in Sources */,
 				1FF5D8E32389468400FD717B /* MainViewController+Extension.swift in Sources */,
 				1F5B00DE239591F800453C0F /* GamesTableViewCell.swift in Sources */,
 				1FF5D8D323887F3F00FD717B /* TimeAndDateHelper.swift in Sources */,
 				1FF5D8E12389465E00FD717B /* MainViewController+CollectionVIewProtocol.swift in Sources */,
+				1FF938A02396A01800FABD15 /* NewsResponse.swift in Sources */,
 				1F5B00D723958F2F00453C0F /* GamesPresenter.swift in Sources */,
 				1F5B00DB239591CC00453C0F /* GamesViewController+Extension.swift in Sources */,
 				1F5B00D523958EC600453C0F /* GamesViewController.swift in Sources */,
 				1FF5D8D62388889500FD717B /* ImageHelper.swift in Sources */,
+				1FF9389A23969A6800FABD15 /* GamePresenter.swift in Sources */,
 				1FF5D8DA23893CFD00FD717B /* SteamResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,6 +13,7 @@ enum SteamAPI{
     case profile(steamId: String)
     case ownedGames(steamId: String)
     case friends(steamId: String)
+    case news(appId: String)
 }
 
 extension SteamAPI: TargetType{
@@ -28,12 +29,14 @@ extension SteamAPI: TargetType{
             return "IPlayerService/GetOwnedGames/v0001/"
         case .friends(_):
             return "ISteamUser/GetFriendList/v0001/"
+        case .news(_):
+            return "ISteamNews/GetNewsForApp/v2/"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .profile(_), .ownedGames(_), .friends(_):
+        case .profile(_), .ownedGames(_), .friends(_), .news(_):
             return .get
         }
     }
@@ -61,6 +64,12 @@ extension SteamAPI: TargetType{
             return .requestParameters(parameters: [
                 "key": Constants.Strings.steamKey.rawValue,
                 "steamid": steamId
+            ], encoding: URLEncoding.queryString)
+        case .news(let appId):
+            return .requestParameters(parameters: [
+                "appid": appId,
+                "maxlength": 0,
+                "count": 5
             ], encoding: URLEncoding.queryString)
         }
     }
