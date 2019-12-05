@@ -38,10 +38,12 @@ class ChartItemCollectionViewCell: UICollectionViewCell{
         }
     }
     func show(){
+        self.wrapperView.alpha = 1.0
         self.wrapperView.backgroundColor = Constants.Colors.status.color
         self.valueLabel.isHidden = false
     }
     func hide(){
+        self.wrapperView.alpha = 0.6
         self.wrapperView.backgroundColor = Constants.Colors.background.color
         self.valueLabel.isHidden = true
     }
@@ -75,8 +77,9 @@ extension ChartItemCollectionViewCell{
             let label = UILabel()
             label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
             label.textColor = Constants.Colors.title.color
-            label.textAlignment = .right
             label.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi/2))
+            label.textAlignment = .right
+            label.adjustsFontSizeToFitWidth = true
             return label
         }()
         dayLabel = {
@@ -105,7 +108,6 @@ extension ChartItemCollectionViewCell{
     private func setConstrains(){
         valueLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(30)
-            $0.centerX.equalToSuperview()
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
         }

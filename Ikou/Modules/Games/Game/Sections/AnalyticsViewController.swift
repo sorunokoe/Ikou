@@ -19,19 +19,29 @@ class AnalyticsViewController: UIViewController{
     var chartCollectionView: UICollectionView!
     var chartLabelsCollectionView: UICollectionView!
     
+    var gradientLayer: CAGradientLayer!
+    
     var choosedChartItem: ChartItemCollectionViewCell?
+    var choosedChartLabel: ChartLabelCollectionViewCell?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        gradientLayer.frame = analyticView.bounds
+    }
 }
 extension AnalyticsViewController{
     
     enum CellIdentifier: String{
-        case chartItem
-        case chartLabel
+        case ItemIdentifier
+        case LabelIdentifier
     }
     
     func configUI(){
@@ -44,7 +54,16 @@ extension AnalyticsViewController{
         analyticView = {
             let view = UIView()
             view.layer.cornerRadius = 20
-            view.backgroundColor = Constants.Colors.block.color
+            gradientLayer = CAGradientLayer()
+            gradientLayer.cornerRadius = 20
+            let background = Constants.Colors.background.color.cgColor
+            let status = Constants.Colors.progress.color.cgColor
+            gradientLayer.colors = [background, status, background]
+            gradientLayer.startPoint = CGPoint(x: 1.0, y: 0.0)
+            gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
+            view.clipsToBounds = true
+            gradientLayer.frame = view.bounds
+            view.layer.addSublayer(gradientLayer)
             return view
         }()
         timeRangeView = {
@@ -60,16 +79,17 @@ extension AnalyticsViewController{
             collectionView.backgroundColor = .clear
             collectionView.showsVerticalScrollIndicator = false
             collectionView.showsHorizontalScrollIndicator = false
-            collectionView.register(ChartItemCollectionViewCell.self, forCellWithReuseIdentifier: CellIdentifier.chartItem.rawValue)
+            collectionView.register(ChartItemCollectionViewCell.self, forCellWithReuseIdentifier: CellIdentifier.ItemIdentifier.rawValue)
             collectionView.delegate = self
             collectionView.dataSource = self
             return collectionView
         }()
         chartLabelsCollectionView = {
             let layout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSize(width: 30, height: 200)
+            layout.itemSize = CGSize(width: 100, height: 35)
             layout.scrollDirection = .horizontal
             let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
+            collectionView.register(ChartLabelCollectionViewCell.self, forCellWithReuseIdentifier: CellIdentifier.LabelIdentifier.rawValue)
             collectionView.backgroundColor = .clear
             collectionView.showsVerticalScrollIndicator = false
             collectionView.showsHorizontalScrollIndicator = false
@@ -91,7 +111,7 @@ extension AnalyticsViewController{
             $0.top.equalToSuperview().offset(20)
             $0.left.equalToSuperview().offset(20)
             $0.right.equalToSuperview().offset(-20)
-            $0.bottom.equalToSuperview().offset(-20)
+            $0.bottom.equalTo(chartLabelsCollectionView.snp.bottom).offset(20)
         }
         timeRangeView.snp.makeConstraints {
             $0.right.equalToSuperview().offset(-20)
@@ -103,13 +123,13 @@ extension AnalyticsViewController{
             $0.top.equalTo(timeRangeView.snp.bottom).offset(20)
             $0.left.equalToSuperview().offset(20)
             $0.right.equalToSuperview().offset(-20)
-            $0.height.equalTo(300)
+            $0.height.equalTo(250)
         }
         chartLabelsCollectionView.snp.makeConstraints {
             $0.top.equalTo(chartCollectionView.snp.bottom).offset(20)
             $0.left.equalToSuperview().offset(20)
             $0.right.equalToSuperview().offset(-20)
-            $0.height.equalTo(100)
+            $0.height.equalTo(50)
         }
     }
     

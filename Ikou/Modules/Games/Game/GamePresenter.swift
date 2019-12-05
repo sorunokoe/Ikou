@@ -58,9 +58,13 @@ class GamePresenter: GamePresenterProtocol{
         let today = Date()
         let nextDate = Calendar.current.date(byAdding: .day, value: -1, to: today)
         let nextDateYesterday = Calendar.current.date(byAdding: .day, value: -2, to: today)
-        charts.append(ChartItem(value: 500, name: "total kills", date: Date()))
+        charts.append(ChartItem(value: 2500, name: "total kills", date: Date()))
         charts.append(ChartItem(value: 200, name: "total kills", date: nextDate!))
-        charts.append(ChartItem(value: 50, name: "total kills", date: nextDateYesterday!))
+        charts.append(ChartItem(value: 150, name: "total kills", date: nextDateYesterday!))
+        charts.append(ChartItem(value: 350, name: "total kills", date: nextDateYesterday!))
+        charts.append(ChartItem(value: 650, name: "total kills", date: nextDateYesterday!))
+        charts.append(ChartItem(value: 1450, name: "total kills", date: nextDateYesterday!))
+        charts.append(ChartItem(value: 450, name: "total kills", date: nextDateYesterday!))
         self.charts = charts
     }
     

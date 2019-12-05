@@ -14,7 +14,7 @@ class LastSessionsViewController: UITableViewController{
     
     lazy var emptyView: EmptyView = {
         let view = EmptyView()
-        view.setData(title: "No sessoins in last 2 weeks.")
+        view.setData(title: "No sessions in the last 2 weeks.")
         return view
     }()
     
@@ -36,7 +36,7 @@ class LastSessionsViewController: UITableViewController{
 }
 extension LastSessionsViewController: LastSessionsViewProtocol{
     func showError(error: String) {
-        self.showError(error: error)
+        self.presentError(error)
     }
     
     func didLoadLastSessions(){
@@ -49,5 +49,3 @@ extension LastSessionsViewController: LastSessionsViewProtocol{
             
     }
 }
-
-
