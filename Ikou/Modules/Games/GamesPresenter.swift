@@ -12,7 +12,7 @@ class GamesPresenter: GamesPresenterProtocol{
     
     var interactor: GamesInputInteractorProtocol?
     private weak var view: GamesViewProtocol?
-    private weak var router: GamesWireframeProtocol?
+    private var router: GamesWireframeProtocol?
     private var steamId: String?
     private var games = [Game]()
     
@@ -29,6 +29,10 @@ class GamesPresenter: GamesPresenterProtocol{
     }
     func getGames() -> [Game] {
         return games
+    }
+    func moveToGame(index: Int) {
+        let game = games[index]
+        router?.moveToGame(game: game)
     }
     
 }

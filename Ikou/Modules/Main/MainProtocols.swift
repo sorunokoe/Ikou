@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol MainWireframeProtocol: class{
-    
+    func moveToOut()
 }
 protocol MainViewProtocol: class {
     var presenter: MainPresenterProtocol? { get set }
@@ -23,6 +23,7 @@ protocol MainViewProtocol: class {
 protocol MainPresenterProtocol: class{
     var interactor: MainInputInteractorProtocol? { get set }
     
+    func exit()
     func loadProfile()
     func getAvatar(completion: @escaping ((UIImage) -> Void))
     func getUsername() -> String

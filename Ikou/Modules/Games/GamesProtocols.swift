@@ -9,7 +9,7 @@
 import Foundation
 
 protocol GamesWireframeProtocol: class{
-    
+    func moveToGame(game: Game)
 }
 protocol GamesViewProtocol: class{
     
@@ -24,6 +24,7 @@ protocol GamesPresenterProtocol: class{
     
     func loadGames()
     func getGames() -> [Game]
+    func moveToGame(index: Int)
 }
 protocol GamesInputInteractorProtocol: class{
     

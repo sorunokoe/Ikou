@@ -17,6 +17,7 @@ extension GamesViewController{
     func configUI(){
         self.view.backgroundColor = Constants.Colors.background.color
         tableView.backgroundColor = Constants.Colors.background.color
+        tableView.backgroundView = emptyView
         tableView.register(GamesTableViewCell.self, forCellReuseIdentifier: CellIdentifier.GamesTableCellIdentifier.rawValue)
         tableView.delegate = self
         tableView.dataSource = self

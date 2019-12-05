@@ -30,7 +30,7 @@ class TabBarRouter: TabBarWireframeProtocol{
         let gamesPager = GamesRouter.createModule()
         gamesPager.setTabBarItem(image: icons[1], title: "Games", tag: 1)
        
-       let sessionsPager = GamesRouter.createModule()
+       let sessionsPager = LastSessionsRouter.createModule()
        sessionsPager.setTabBarItem(image: icons[2], title: "Sessions", tag: 2)
         
         return [mainPager, gamesPager, sessionsPager]

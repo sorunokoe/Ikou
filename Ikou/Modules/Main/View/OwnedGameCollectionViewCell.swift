@@ -25,7 +25,7 @@ class OwnedGameCollectionViewCell: UICollectionViewCell{
     }
     
     func set(game: Game){
-        ImageHelper.shared.getImageBy(url: .ownedGame(appid: "\(game.appid)", hash: game.img_logo_url)) {[weak self] image in
+        ImageHelper.shared.getImageBy(url: .game(appid: "\(game.appid)", hash: game.img_logo_url)) {[weak self] image in
             self?.logoImageView.image = image
         }
         titleLabel.text = game.name

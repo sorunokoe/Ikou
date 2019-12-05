@@ -11,8 +11,6 @@ import SnapKit
 
 class MainViewController: UIViewController{
     
-    var cacheHelper: CacheHelper?
-    
     // MARK: - Protocol
     var presenter: MainPresenterProtocol?
     
@@ -33,12 +31,46 @@ class MainViewController: UIViewController{
     var friendsTitleLabel: UILabel!
     var friendsTableView: UITableView!
     
+    lazy var emptyGamesView: EmptyView = {
+        let view = EmptyView()
+        view.setData(title: "You have no owned games.")
+        return view
+    }()
+    lazy var emptyFriendsView: EmptyView = {
+        let view = EmptyView()
+        view.setData(title: "You have no friends. I'm sorry..")
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavBar()
         configUI()
         presenter?.loadProfile()
         presenter?.loadOwnedGames()
         presenter?.loadFriends()
+    }
+    
+    // MARK: - Update data
+    @objc func refresh(){
+        presenter?.loadProfile()
+        presenter?.loadOwnedGames()
+        presenter?.loadFriends()
+        self.scrollView.refreshControl?.endRefreshing()
+    }
+    
+    // MARK: - Set NavBar
+    func setNavBar(){
+        let button = UIBarButtonItem(image: UIImage(named: "settings"), style: .done, target: self, action: #selector(openSettings))
+        self.navigationItem.rightBarButtonItem = button
+    }
+    @objc private func openSettings(){
+        let ac = UIAlertController(title: "Settings", message: nil, preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "Sign out", style: .default, handler: {[weak self] (_) in
+            self?.presenter?.exit()
+        }))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+        self.present(ac, animated: true, completion: nil)
     }
     
 }
@@ -54,13 +86,24 @@ extension MainViewController: MainViewProtocol{
         profileTypeLabel.text = presenter?.getPrivateOrPublicProfile()
     }
     func didLoadOwnedGames() {
-        self.ownedGamesCollectionView.reloadData()
+        if self.presenter?.getGames().isEmpty ?? true{
+            self.ownedGamesCollectionView.backgroundView = emptyGamesView
+        }else{
+            self.ownedGamesCollectionView.backgroundView = nil
+            self.ownedGamesCollectionView.reloadData()
+        }
+        
     }
     func didLoadFriends() {
-        self.friendsTableView.reloadData()
+        if self.presenter?.getFriends().isEmpty ?? true{
+            self.friendsTableView.backgroundView = emptyFriendsView
+        }else{
+            self.friendsTableView.backgroundView = nil
+            self.friendsTableView.reloadData()
+        }
     }
     
     func showError(_ error: String) {
-        // TODO: Show Error
+        self.presentError(error)
     }
 }

@@ -12,8 +12,8 @@ import UIKit
 class MainPresenter: MainPresenterProtocol{
     
     var interactor: MainInputInteractorProtocol?
-    private weak var view: MainViewProtocol?
-    private weak var router: MainWireframeProtocol?
+    private var view: MainViewProtocol?
+    private var router: MainWireframeProtocol?
     
     private var profile: Profile?
     private var games = [Game]()
@@ -29,6 +29,12 @@ class MainPresenter: MainPresenterProtocol{
     }
     
     // MARK: - Profile
+    
+    func exit(){
+        if CacheHelper.shared.remove(.steamID){
+            router?.moveToOut()
+        }
+    }
     
     func loadProfile() {
         guard let steamId = steamId else { return }

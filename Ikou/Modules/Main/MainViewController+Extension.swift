@@ -29,6 +29,8 @@ extension MainViewController{
             let scrollView = UIScrollView()
             scrollView.showsVerticalScrollIndicator = false
             scrollView.showsHorizontalScrollIndicator = false
+            scrollView.refreshControl = UIRefreshControl()
+            scrollView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
             return scrollView
         }()
         mainStackView = {
@@ -107,6 +109,7 @@ extension MainViewController{
             layout.minimumLineSpacing = 20
             let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
             collectionView.register(OwnedGameCollectionViewCell.self, forCellWithReuseIdentifier: CellIdentifier.OwnedGamesCellIdentifier.rawValue)
+            collectionView.backgroundView = emptyGamesView
             collectionView.showsVerticalScrollIndicator = false
             collectionView.showsHorizontalScrollIndicator = false
             collectionView.backgroundColor = .clear
@@ -133,6 +136,7 @@ extension MainViewController{
             let tableView = UITableView()
             tableView.backgroundColor = .clear
             tableView.register(FriendsTableViewCell.self, forCellReuseIdentifier: CellIdentifier.FriendsCellIdentifier.rawValue)
+            tableView.backgroundView = emptyFriendsView
             tableView.delegate = self
             tableView.dataSource = self
             tableView.separatorStyle = .none

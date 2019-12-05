@@ -13,13 +13,23 @@ protocol LastSessionsWireframe: class{
 }
 protocol LastSessionsViewProtocol: class{
     var presenter: LastSessionPresenterProtocol? { get set }
+    
+    func didLoadLastSessions()
+    func showError(error: String)
 }
 protocol LastSessionPresenterProtocol: class{
     var interactor: LastSessionsInputeInteractorProcol? { get set }
+    
+    func loadLastSessions()
+    func getLastSessions() -> [LastSession]
 }
 protocol LastSessionsInputeInteractorProcol: class{
     var presenter: LastSessionsOutputInteractorProtocol? { get set }
+    
+    func loadLastSessions(steamId: String)
 }
 protocol LastSessionsOutputInteractorProtocol: class{
     
+    func didLoadLastSessions(sessions: [LastSession])
+    func didLoadWith(error: SteamError)
 }

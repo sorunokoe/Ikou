@@ -27,7 +27,7 @@ class GamesTableViewCell: UITableViewCell{
     func setData(game: Game){
         let appId = "\(game.appid)"
         let url = game.img_logo_url
-        ImageHelper.shared.getImageBy(url: .ownedGame(appid: appId, hash: url)) {[weak self] (image) in
+        ImageHelper.shared.getImageBy(url: .game(appid: appId, hash: url)) {[weak self] (image) in
             self?.iconImageView.image = image
         }
         titleLabel.text = game.name

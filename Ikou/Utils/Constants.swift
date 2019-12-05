@@ -36,6 +36,7 @@ struct Constants{
         case title
         case status
         case block
+        case progress
         
         var color: UIColor{
             switch self {
@@ -55,6 +56,8 @@ struct Constants{
                 }
             case .status:
                 return .systemBlue
+            case .progress:
+                return UIColor(hex: "#1C3B58")
             case .title:
                 if #available(iOS 12.0, *) {
                     switch UIScreen.main.traitCollection.userInterfaceStyle{

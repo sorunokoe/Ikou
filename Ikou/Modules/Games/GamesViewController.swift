@@ -24,14 +24,18 @@ class GamesViewController: UITableViewController{
         return controller
     }()
     
+    lazy var emptyView: EmptyView = {
+        let view = EmptyView()
+        view.setData(title: "No games you owned. But why?..")
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
         presenter?.loadGames()
         if #available(iOS 11.0, *) {
             navigationItem.searchController = searchController
-        } else {
-            
         }
     }
     
@@ -39,10 +43,15 @@ class GamesViewController: UITableViewController{
 extension GamesViewController: GamesViewProtocol{
     
     func didLoadGames() {
-        self.tableView.reloadData()
+        if presenter?.getGames().isEmpty ?? true{
+            tableView.backgroundView = emptyView
+        }else{
+            tableView.backgroundView = nil
+            self.tableView.reloadData()
+        }
     }
     func showError(_ error: String) {
-        // TODO: Show Error
+        self.presentError(error)
     }
     
 }

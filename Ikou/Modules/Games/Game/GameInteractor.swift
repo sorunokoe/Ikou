@@ -34,4 +34,23 @@ class GameInteractor: GameInputInteractorProtocol{
             }
         })
     }
+    
+    func loadAchievements(appId: String, steamId: String) {
+        provider?.request(.achievements(appId: appId, steamId: steamId), completion: {[weak self] (result) in
+            switch result{
+            case let .success(response):
+                let data = response.data
+                do{
+                    let achievementResponse = try JSONDecoder().decode(AchievementsResponse.self, from: data)
+                    if let game = achievementResponse.game, let statsAndAch = game.availableGameStats, let achievements = statsAndAch.achievements{
+                        self?.presenter?.didLoadAchievements(achievements: achievements)
+                    }
+                }catch{
+                    self?.presenter?.didLoadWith(error: .decode)
+                }
+            case let .failure(error):
+                self?.presenter?.didLoadWith(error: .network(error: error))
+            }
+        })
+    }
 }

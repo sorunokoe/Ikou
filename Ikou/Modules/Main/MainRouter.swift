@@ -13,7 +13,7 @@ class MainRouter: MainWireframeProtocol{
     weak var viewController: UIViewController?
     
     static func createModule() -> UIViewController{
-        let steamId = CacheHelper().get(.steamID) ?? ""
+        let steamId = CacheHelper.shared.get(.steamID) ?? ""
         let view = MainViewController()
         let router = MainRouter()
         let interactor = MainInteractor()
@@ -24,6 +24,10 @@ class MainRouter: MainWireframeProtocol{
         router.viewController = view
         let nc = UINavigationController.init(rootViewController: view)
         return nc
+    }
+    
+    func moveToOut(){
+        NavigationHelper.shared.start()
     }
     
 }

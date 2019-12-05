@@ -11,9 +11,9 @@ import SnapKit
 
 class LastSessionsTableCell: UITableViewCell{
     
-    var logoImageView: UIImageView!
-    var titleLabel: UILabel!
-    var lastPlayedLabel: UILabel!
+    private var logoImageView: UIImageView!
+    private var titleLabel: UILabel!
+    private var lastPlayedLabel: UILabel!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -24,8 +24,16 @@ class LastSessionsTableCell: UITableViewCell{
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(){
-        
+    func setData(session: LastSession){
+        guard let appId = session.appid, let hash = session.img_icon_url else { return }
+        ImageHelper.shared.getImageBy(url: .game(appid: "\(appId)", hash: hash)) {[weak self] (image) in
+            self?.logoImageView.image = image
+        }
+        titleLabel.text = session.name
+        if let playTime = session.playtime_2weeks{
+            let time = Double(playTime)/60.0
+            lastPlayedLabel.text = String(format: "Played in last 2 weeks %0.1f hrs", time)
+        }
     }
     
     override func prepareForReuse() {

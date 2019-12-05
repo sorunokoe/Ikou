@@ -7,23 +7,83 @@
 //
 
 import UIKit
+import SnapKit
 
 class GameViewController: UIViewController{
     
     var presenter: GamePresenterProtocol?
     
+    var titleLabel: UILabel!
+    var playTimeLabel: UILabel!
+    var segmentCollectionView: UICollectionView!
+    var segmentChooseView: UIView!
+    var contentView: UIView!
+    
+    var choosedCell: UICollectionViewCell?
+    
+    var newsController: NewsViewController?
+    var achievemenetsController: AchievementsViewController?
+    
+    var choosedVC: UIViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
+        presenter?.loadGame()
+        presenter?.loadNews()
+        presenter?.loadAchievements()
     }
-    
 }
 extension GameViewController: GameViewProtocol{
+    func navigate(to: GameSegment){
+        switch to {
+        case .news:
+            newsController = NewsViewController.initializeWithLayout()
+            guard let newsController = newsController else { return }
+            newsController.presenter = presenter
+            addOrRemoveChild(vc: newsController)
+            choosedVC = newsController
+        case .analytics:
+            let newsController = NewsViewController()
+            self.contentView.addSubview(newsController.view)
+        case .achievements:
+            achievemenetsController = AchievementsViewController()
+            guard let achievemenetsController = achievemenetsController else { return }
+            achievemenetsController.presenter = presenter
+            addOrRemoveChild(vc: achievemenetsController)
+            choosedVC = achievemenetsController
+        }
+    }
+    func gameDidLoad(){
+        guard let game = presenter?.getGame() else { return }
+        titleLabel.text = game.name
+        playTimeLabel.text = presenter?.getPlayTime()
+    }
     func showError(error: String) {
-        // TODO: shhow error
+        self.presentError(error)
     }
     
     func newsDidLoad() {
-        
+        guard let newsController = newsController else { return }
+        newsController.updateNews()
+    }
+    func achievementsDidLoad() {
+        guard let achievemenetsController = achievemenetsController else { return }
+        achievemenetsController.updateAchievements()
+    }
+    
+    // MARK: - Add & Remove Child
+    func addOrRemoveChild(vc: UIViewController){
+        if let choosedVC = choosedVC{
+            choosedVC.willMove(toParent: nil)
+            choosedVC.removeFromParent()
+            choosedVC.view.removeFromSuperview()
+        }
+        self.contentView.addSubview(vc.view)
+        vc.view.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        self.addChild(vc)
+        vc.didMove(toParent: self)
     }
 }

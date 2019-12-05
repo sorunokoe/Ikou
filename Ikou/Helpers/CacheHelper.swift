@@ -19,6 +19,7 @@ protocol CacheHelperProtocol{
 }
 class CacheHelper: CacheHelperProtocol{
     
+    static var shared = CacheHelper()
     private let keychain = KeychainSwift()
     
     func set(key: CacheKeys, value: String) {

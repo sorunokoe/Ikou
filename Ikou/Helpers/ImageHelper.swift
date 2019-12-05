@@ -11,14 +11,14 @@ import UIKit
 
 enum ImageType{
     case avatar(url: String)
-    case ownedGame(appid: String, hash: String)
+    case game(appid: String, hash: String)
 }
 extension ImageType{
     var imageUrl: URL?{
         switch self {
         case .avatar(let url):
             return URL(string: url)
-        case .ownedGame(let appid, let hash):
+        case .game(let appid, let hash):
             let url = "http://media.steampowered.com/steamcommunity/public/images/apps/\(appid)/\(hash).jpg"
             return URL(string: url)
         }

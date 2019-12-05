@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct NewsResponse: Codable{
     var appnews: AppNews?
     
@@ -36,4 +35,3 @@ struct AppNews: Codable{
         self.newsitems = try? container.decode([News].self, forKey: .newsitems)
     }
 }
-
