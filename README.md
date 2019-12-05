@@ -38,6 +38,12 @@
 ![Profile](Screenshots/profile.png)
 ![Games](Screenshots/game.png)
 
+![Profile White Mode](Screenshots/profile_white.png)
+![Games Empty](Screenshots/games_empty.png)
+![Profile Empty](Screenshots/profile_empty.png)
+![Last Sessions Empty](Screenshots/lastsessions_empty.png)
+![Sign out](Screenshots/signout.png)
+
 ## Design 
 > [FIgma](https://www.figma.com/file/T9PhYjKNKEMU8Or3hBskTx/Ikou?node-id=14%3A2)
 ![](Screenshots/figma.png)
