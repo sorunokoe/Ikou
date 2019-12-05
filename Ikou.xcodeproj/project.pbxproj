@@ -91,6 +91,12 @@
 		1FF938D223987A4500FABD15 /* LastSessoinsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF938D123987A4500FABD15 /* LastSessoinsInteractor.swift */; };
 		1FF938D423987AA700FABD15 /* LastSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF938D323987AA700FABD15 /* LastSession.swift */; };
 		1FF938D623987B6B00FABD15 /* LastSessionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF938D523987B6B00FABD15 /* LastSessionsResponse.swift */; };
+		1FF938D823990A6C00FABD15 /* AnalyticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF938D723990A6C00FABD15 /* AnalyticsViewController.swift */; };
+		1FF938DA239918B900FABD15 /* AnalyticsGameTimeRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF938D9239918B900FABD15 /* AnalyticsGameTimeRangeView.swift */; };
+		1FF938DC23991DA600FABD15 /* ChartItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF938DB23991DA600FABD15 /* ChartItemCollectionViewCell.swift */; };
+		1FF938DE239920C000FABD15 /* AnalyticsViewController+CollectionViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF938DD239920C000FABD15 /* AnalyticsViewController+CollectionViewProtocol.swift */; };
+		1FF938E0239921D600FABD15 /* ChartLabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF938DF239921D600FABD15 /* ChartLabelCollectionViewCell.swift */; };
+		1FF938E223992C9200FABD15 /* ChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF938E123992C9200FABD15 /* ChartItem.swift */; };
 		5FDEBA997F790D78BEC8C88E /* Pods_IkouTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EC80A2BA42D1414D14A014 /* Pods_IkouTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -192,6 +198,12 @@
 		1FF938D123987A4500FABD15 /* LastSessoinsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSessoinsInteractor.swift; sourceTree = "<group>"; };
 		1FF938D323987AA700FABD15 /* LastSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSession.swift; sourceTree = "<group>"; };
 		1FF938D523987B6B00FABD15 /* LastSessionsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSessionsResponse.swift; sourceTree = "<group>"; };
+		1FF938D723990A6C00FABD15 /* AnalyticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewController.swift; sourceTree = "<group>"; };
+		1FF938D9239918B900FABD15 /* AnalyticsGameTimeRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsGameTimeRangeView.swift; sourceTree = "<group>"; };
+		1FF938DB23991DA600FABD15 /* ChartItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		1FF938DD239920C000FABD15 /* AnalyticsViewController+CollectionViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnalyticsViewController+CollectionViewProtocol.swift"; sourceTree = "<group>"; };
+		1FF938DF239921D600FABD15 /* ChartLabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLabelCollectionViewCell.swift; sourceTree = "<group>"; };
+		1FF938E123992C9200FABD15 /* ChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartItem.swift; sourceTree = "<group>"; };
 		3239AC8D737F612EC129445B /* Pods_Ikou.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ikou.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0AC4C68D1F7CB32FF9E3878 /* Pods-IkouTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IkouTests.debug.xcconfig"; path = "Target Support Files/Pods-IkouTests/Pods-IkouTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B1EC80A2BA42D1414D14A014 /* Pods_IkouTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IkouTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -365,6 +377,7 @@
 				1FF9389D23969EB400FABD15 /* News.swift */,
 				1FF938B0239852DF00FABD15 /* Achievement.swift */,
 				1FF938D323987AA700FABD15 /* LastSession.swift */,
+				1FF938E123992C9200FABD15 /* ChartItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -511,6 +524,8 @@
 				1FF938AB23980A3C00FABD15 /* View */,
 				1FF938A42397F94100FABD15 /* NewsViewController.swift */,
 				1FF938B2239853F800FABD15 /* AchievementsViewController.swift */,
+				1FF938D723990A6C00FABD15 /* AnalyticsViewController.swift */,
+				1FF938DD239920C000FABD15 /* AnalyticsViewController+CollectionViewProtocol.swift */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -520,6 +535,9 @@
 			children = (
 				1FF938A22397F1A800FABD15 /* NewsGameCollectionViewCell.swift */,
 				1FF938B62398570000FABD15 /* AchievementsTableViewCell.swift */,
+				1FF938D9239918B900FABD15 /* AnalyticsGameTimeRangeView.swift */,
+				1FF938DB23991DA600FABD15 /* ChartItemCollectionViewCell.swift */,
+				1FF938DF239921D600FABD15 /* ChartLabelCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -791,6 +809,7 @@
 				1F056116238D8253005452B0 /* LastSessionsViewController.swift in Sources */,
 				1FF5D8DF238941D100FD717B /* OwnedGameCollectionViewCell.swift in Sources */,
 				1F05611D238D8A43005452B0 /* Friend.swift in Sources */,
+				1FF938E0239921D600FABD15 /* ChartLabelCollectionViewCell.swift in Sources */,
 				1F9E272E23856A81006C6A2F /* TabBarPresenter.swift in Sources */,
 				1FF5D8C62388711700FD717B /* ProfileResponse.swift in Sources */,
 				1FF938C8239876BF00FABD15 /* FriendInteractor.swift in Sources */,
@@ -800,8 +819,11 @@
 				1FF9389E23969EB400FABD15 /* News.swift in Sources */,
 				1F056119238D832D005452B0 /* LastSessionsTableCell.swift in Sources */,
 				1F9E2704238516D9006C6A2F /* AuthRouter.swift in Sources */,
+				1FF938D823990A6C00FABD15 /* AnalyticsViewController.swift in Sources */,
 				1FF938C22398750800FABD15 /* FriendProtocols.swift in Sources */,
+				1FF938DC23991DA600FABD15 /* ChartItemCollectionViewCell.swift in Sources */,
 				1F9E271923855EB1006C6A2F /* CacheHelper.swift in Sources */,
+				1FF938E223992C9200FABD15 /* ChartItem.swift in Sources */,
 				1F9E271323855621006C6A2F /* Constants.swift in Sources */,
 				1F5B00CE239563AC00453C0F /* MainViewController+TableViewProtocol.swift in Sources */,
 				1F9E271623855C14006C6A2F /* SteamAPI.swift in Sources */,
@@ -814,6 +836,7 @@
 				1F056114238D81DB005452B0 /* LastSessionsProtocols.swift in Sources */,
 				1F5B00CC23955E6A00453C0F /* FriendsTableViewCell.swift in Sources */,
 				1F9E271C23856127006C6A2F /* MainProtocols.swift in Sources */,
+				1FF938DE239920C000FABD15 /* AnalyticsViewController+CollectionViewProtocol.swift in Sources */,
 				1F9E2702238515E2006C6A2F /* AuthProtocols.swift in Sources */,
 				1FF5D8D12388752700FD717B /* MainInteractor.swift in Sources */,
 				1FF93896239699B800FABD15 /* GameViewController.swift in Sources */,
@@ -833,6 +856,7 @@
 				1FF938C4239875D400FABD15 /* FriendRouter.swift in Sources */,
 				1FF938B3239853F800FABD15 /* AchievementsViewController.swift in Sources */,
 				1F5B00D723958F2F00453C0F /* GamesPresenter.swift in Sources */,
+				1FF938DA239918B900FABD15 /* AnalyticsGameTimeRangeView.swift in Sources */,
 				1F5B00DB239591CC00453C0F /* GamesViewController+Extension.swift in Sources */,
 				1FF938AD23980E3D00FABD15 /* GameRouter.swift in Sources */,
 				1F5B00D523958EC600453C0F /* GamesViewController.swift in Sources */,

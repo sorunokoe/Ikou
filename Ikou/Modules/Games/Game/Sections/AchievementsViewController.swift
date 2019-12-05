@@ -47,4 +47,3 @@ extension AchievementsViewController{
         return 120
     }
 }
-

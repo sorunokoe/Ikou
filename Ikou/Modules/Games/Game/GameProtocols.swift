@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol GameWireframeProtocol: class{
     
@@ -29,12 +30,15 @@ protocol GamePresenterProtocol: class{
     func loadGame()
     func loadNews()
     func loadAchievements()
+    func loadCharts()
     
     func getPlayTime() -> String
     func getGame() -> Game
     func getNews() -> [News]
     func getAchievements() -> [Achievement]
     func changeSegment(index: Int)
+    func getCharts() -> [ChartItem]
+    func getHeight(index: Int) -> CGFloat
 }
 protocol GameInputInteractorProtocol: class{
     var presenter: GameOutputInteractorProtocol? { get set }

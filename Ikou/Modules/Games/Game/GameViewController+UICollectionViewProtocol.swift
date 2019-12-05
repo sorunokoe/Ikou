@@ -30,12 +30,12 @@ extension GameViewController: UICollectionViewDataSource{
 extension GameViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = choosedCell{
-            UIView.animate(withDuration: 0.3) {
+            UIView.animate(withDuration: 0.15) {
                 cell.backgroundColor = .clear
             }
         }
         let cell = collectionView.cellForItem(at: indexPath)
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.15) {
             cell?.backgroundColor = Constants.Colors.status.color
         }
         choosedCell = cell

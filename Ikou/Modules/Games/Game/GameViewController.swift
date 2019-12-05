@@ -23,6 +23,7 @@ class GameViewController: UIViewController{
     
     var newsController: NewsViewController?
     var achievemenetsController: AchievementsViewController?
+    var analyticsController: AnalyticsViewController?
     
     var choosedVC: UIViewController?
     
@@ -32,6 +33,8 @@ class GameViewController: UIViewController{
         presenter?.loadGame()
         presenter?.loadNews()
         presenter?.loadAchievements()
+        presenter?.loadCharts()
+        presenter?.changeSegment(index: 0)
     }
 }
 extension GameViewController: GameViewProtocol{
@@ -44,8 +47,11 @@ extension GameViewController: GameViewProtocol{
             addOrRemoveChild(vc: newsController)
             choosedVC = newsController
         case .analytics:
-            let newsController = NewsViewController()
-            self.contentView.addSubview(newsController.view)
+            analyticsController = AnalyticsViewController()
+            guard let analyticsController = analyticsController else { return }
+            analyticsController.presenter = presenter
+            addOrRemoveChild(vc: analyticsController)
+            choosedVC = analyticsController
         case .achievements:
             achievemenetsController = AchievementsViewController()
             guard let achievemenetsController = achievemenetsController else { return }

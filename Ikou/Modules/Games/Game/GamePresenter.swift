@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum GameSegment: String{
     case news = "News"
@@ -25,6 +26,9 @@ class GamePresenter: GamePresenterProtocol{
     private var game: Game
     private var allNews = [News]()
     private var achievements = [Achievement]()
+    
+    var maxValueOfChart = 0
+    private var charts = [ChartItem]()
     
     private var steamId: String
     
@@ -47,6 +51,17 @@ class GamePresenter: GamePresenterProtocol{
     
     func loadAchievements() {
         interactor?.loadAchievements(appId: "\(game.appid)", steamId: steamId)
+    }
+    
+    func loadCharts(){
+        var charts = [ChartItem]()
+        let today = Date()
+        let nextDate = Calendar.current.date(byAdding: .day, value: -1, to: today)
+        let nextDateYesterday = Calendar.current.date(byAdding: .day, value: -2, to: today)
+        charts.append(ChartItem(value: 500, name: "total kills", date: Date()))
+        charts.append(ChartItem(value: 200, name: "total kills", date: nextDate!))
+        charts.append(ChartItem(value: 50, name: "total kills", date: nextDateYesterday!))
+        self.charts = charts
     }
     
     // MARK: - Prepare Data
@@ -74,6 +89,23 @@ class GamePresenter: GamePresenterProtocol{
         let segment = segments[index]
         currentSegment = segment
         view?.navigate(to: segment)
+    }
+    
+    func getCharts() -> [ChartItem] {
+        return charts
+    }
+    func getHeight(index: Int) -> CGFloat{
+        maxValueOfChart = 0
+        charts.forEach {
+            if maxValueOfChart < $0.value{
+                maxValueOfChart = $0.value
+            }
+        }
+        let item = charts[index]
+        let itemProcent = Double(item.value)/100.0
+        let maxProcent = Double(maxValueOfChart)/100.0
+        let height = CGFloat((itemProcent/maxProcent)*200.0)
+        return height
     }
 }
 extension GamePresenter: GameOutputInteractorProtocol{
