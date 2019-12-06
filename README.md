@@ -65,7 +65,7 @@
 
 
 ## Demo
-![Demo Video](Screenshots/demo.mov)
+![Demo Video](Screenshots/demo.gif)
 
 ## Screenshots
 ![Profile](Screenshots/profile.png)
