@@ -27,7 +27,6 @@ class TimeAndDateHelper{
         return dateFormatter.date(from: string) ?? Date()
     }
     func stringOf(_ date: Date) -> String{
-        let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter.string(from: date)

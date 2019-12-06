@@ -46,7 +46,6 @@ struct Game: Codable{
         playtime_linux_forever = try container.decode(Int.self, forKey: .playtime_linux_forever)
     }
     
-    
     init(object: GameObject){
         appid = object.appid
         name = object.name

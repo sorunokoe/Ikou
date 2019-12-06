@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct AchievementsResponse: Codable{
     var game: AchievementsGameResponse?
     enum CodingKeys: CodingKey{

@@ -43,18 +43,24 @@ class GamesViewController: UITableViewController{
 extension GamesViewController: GamesViewProtocol{
     
     func didLoadGames() {
-        if presenter?.getGames().isEmpty ?? true{
+        if presenter?.isEmpty() ?? true{
             tableView.backgroundView = emptyView
         }else{
             tableView.backgroundView = nil
             self.tableView.reloadData()
         }
     }
+    
     func showError(_ error: String) {
         self.presentError(error)
     }
     
 }
 extension GamesViewController: UISearchBarDelegate{
-    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter?.search(word: searchText)
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        presenter?.cancelSearch()
+    }
 }

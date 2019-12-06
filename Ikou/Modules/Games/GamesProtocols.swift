@@ -25,6 +25,9 @@ protocol GamesPresenterProtocol: class{
     func loadGames()
     func getGames() -> [Game]
     func moveToGame(index: Int)
+    func search(word: String)
+    func cancelSearch()
+    func isEmpty() -> Bool
 }
 protocol GamesInputInteractorProtocol: class{
     

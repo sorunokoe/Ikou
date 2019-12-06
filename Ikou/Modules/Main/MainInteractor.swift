@@ -7,7 +7,6 @@
 //
 
 import Moya
-import RxSwift
 
 class MainInteractor: MainInputInteractorProtocol{
     

@@ -14,6 +14,8 @@ class GamesPresenter: GamesPresenterProtocol{
     private weak var view: GamesViewProtocol?
     private var router: GamesWireframeProtocol?
     private var steamId: String?
+    
+    private var allGames = [Game]()
     private var games = [Game]()
     
     init(interface: GamesViewProtocol, interactor: GamesInputInteractorProtocol, router: GamesWireframeProtocol, steamId: String){
@@ -27,6 +29,36 @@ class GamesPresenter: GamesPresenterProtocol{
         guard let steamId = steamId else { return }
         interactor?.loadGames(steamId: steamId)
     }
+    func search(word: String) {
+        self.games = allGames.filter { (game) -> Bool in
+            if game.name.hasPrefix(word){
+                return true
+            }
+            if game.name.hasSuffix(word){
+                return true
+            }
+            if game.name.contains(word){
+                return true
+            }
+            for w in game.name.split(separator: " "){
+                if w.hasPrefix(word){
+                    return true
+                }
+                if w.hasSuffix(word){
+                    return true
+                }
+                if w.contains(word){
+                    return true
+                }
+            }
+            return false
+        }
+        self.view?.didLoadGames()
+    }
+    func cancelSearch(){
+        self.games = allGames
+        self.view?.didLoadGames()
+    }
     func getGames() -> [Game] {
         return games
     }
@@ -34,11 +66,15 @@ class GamesPresenter: GamesPresenterProtocol{
         let game = games[index]
         router?.moveToGame(game: game)
     }
+    func isEmpty() -> Bool{
+        return allGames.isEmpty
+    }
     
 }
 extension GamesPresenter: GamesOutputInteractorProtocol{
     func didLoadGames(games: [Game]) {
         self.games = games
+        self.allGames = games
         view?.didLoadGames()
     }
     

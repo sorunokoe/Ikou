@@ -18,7 +18,7 @@ class GamePresenter: GamePresenterProtocol{
     
     var interactor: GameInputInteractorProtocol?
     private weak var view: GameViewProtocol?
-    private weak var router: GameWireframeProtocol?
+    private var router: GameWireframeProtocol?
     
     var segments: [GameSegment] = [.analytics, .achievements, .news]
     var currentSegment: GameSegment = .analytics
@@ -85,6 +85,11 @@ class GamePresenter: GamePresenterProtocol{
     
     func getStats() -> [StatItem] {
         return stats
+    }
+    
+    func openNews(index: Int){
+        let news = allNews[index]
+        router?.moveToNews(url: news.url ?? "")
     }
 }
 

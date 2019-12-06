@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol GameWireframeProtocol: class{
-    
+    func moveToNews(url: String)
 }
 protocol GameViewProtocol: class{
     var presenter: GamePresenterProtocol? { get set }
@@ -39,6 +39,7 @@ protocol GamePresenterProtocol: class{
     func getAchievements() -> [Achievement]
     func changeSegment(index: Int)
     func getStats() -> [StatItem]
+    func openNews(index: Int)
 }
 protocol GameInputInteractorProtocol: class{
     var presenter: GameOutputInteractorProtocol? { get set }

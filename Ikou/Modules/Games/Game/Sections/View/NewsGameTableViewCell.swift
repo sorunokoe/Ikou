@@ -51,7 +51,6 @@ extension NewsGameTableViewCell{
     
     private func setViews(){
         self.backgroundColor = .clear
-        self.contentView.backgroundColor = Constants.Colors.block.color
         self.contentView.layer.cornerRadius = Constants.Layout.avatarCornerRadius.rawValue
         titleLabel = {
             let label = UILabel()

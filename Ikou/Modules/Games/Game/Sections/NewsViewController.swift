@@ -27,7 +27,7 @@ class NewsViewController: UITableViewController{
         tableView.register(NewsGameTableViewCell.self, forCellReuseIdentifier: CellIdentifier.NewsIdentifier.rawValue)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.separatorStyle = .none
+//        tableView.separatorStyle = .none
     }
     
     func updateNews(){
@@ -56,5 +56,8 @@ extension NewsViewController{
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 165
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.presenter?.openNews(index: indexPath.row)
     }
 }

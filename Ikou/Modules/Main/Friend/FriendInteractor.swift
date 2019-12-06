@@ -11,5 +11,4 @@ import Foundation
 class FriendInteractor: FriendInputInteractorProtocol{
     var presenter: FriendOutputInteractorProtocol?
     
-    
 }

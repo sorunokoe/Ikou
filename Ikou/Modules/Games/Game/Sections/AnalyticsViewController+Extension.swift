@@ -41,6 +41,7 @@ extension AnalyticsViewController{
         }()
         timeRangeView = {
             let view = AnalyticsGameTimeRangeView()
+            view.isHidden = true
             return view
         }()
         chartCollectionView = {
@@ -93,7 +94,7 @@ extension AnalyticsViewController{
             $0.height.equalTo(40)
         }
         chartCollectionView.snp.makeConstraints {
-            $0.top.equalTo(timeRangeView.snp.bottom).offset(10)
+            $0.top.equalToSuperview().offset(20)
             $0.left.equalToSuperview().offset(20)
             $0.right.equalToSuperview().offset(-20)
             $0.height.equalTo(230)

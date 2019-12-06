@@ -37,7 +37,6 @@ class MainPresenter: MainPresenterProtocol{
     }
     
     func loadProfile() {
-        guard let steamId = steamId else { return }
         interactor?.loadProfile()
     }
     
