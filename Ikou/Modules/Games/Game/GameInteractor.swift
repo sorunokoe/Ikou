@@ -119,22 +119,22 @@ class GameInteractor: GameInputInteractorProtocol{
     }
     private func returnStats(){
         if let stats = statsStorage?.get(appId: appId){
-//            var allStats = stats
-//            let name = "total_kills"
-//            var value = 120
-//            for i in 1..<20{
-//                let yesterday = Calendar.current.date(byAdding: .day, value: i, to: Date())!
-//                let date = TimeAndDateHelper.shared.stringOf(yesterday)
-//                let statObject = StatItemObject()
-//                statObject.appId = 730
-//                statObject.name = name
-//                value += 550
-//                statObject.value = value
-//                statObject.date = date
-//                statObject.id = "total_kills".appending(date)
-//                allStats.append(StatItem(object: statObject))
-//            }
-            self.presenter?.didLoadStats(stats: stats)
+            var allStats = stats
+            let name = "total_kills"
+            var value = 120
+            for i in 1..<20{
+                let yesterday = Calendar.current.date(byAdding: .day, value: i, to: Date())!
+                let date = TimeAndDateHelper.shared.stringOf(yesterday)
+                let statObject = StatItemObject()
+                statObject.appId = 730
+                statObject.name = name
+                value += 550
+                statObject.value = value
+                statObject.date = date
+                statObject.id = "total_kills".appending(date)
+                allStats.append(StatItem(object: statObject))
+            }
+            self.presenter?.didLoadStats(stats: allStats)
         }
     }
     

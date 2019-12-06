@@ -30,13 +30,13 @@
 - Singleton(ehh..), Facade, Factory
 
 ## A few words about stack
-- Git Flow
-- SwiftLint: to keep code clean
-- Fastlane with Match: delivery
-- CI: Github Actions: automate
-- Unit tests: no TDD, no BDD, but also with ❤
-- Crashhlytics: as always 😉
-- No xib, storyboards
+- [x] Git Flow
+- [x] SwiftLint: to keep code clean
+- [ ] Fastlane with Match: delivery - have no app serts
+- [ ] CI: Github Actions: automate
+- [x] Unit tests: no TDD, no BDD, but also with ❤
+- [ ] Crashhlytics: as always 😉
+- [x] No xib, storyboards
 
 ## API
 - ISteamUser/GetPlayerSummaries/v0002/
@@ -50,23 +50,22 @@
 [Additional methods you can see here](https://steamcommunity.com/dev)
 
 ## Dependencies
-#### Color
-- Hue. To get hex color. 
-#### Keyboard
-- IQKeyboardManagerSwift
-Smart keyboard.
-#### Storage
-- KeychainSwift
-To save interesting info, like passwords, token etc.
-#### Network
-- Moya
-Additional layer to work with Alamofire. Really easy to work with network.
-#### Database
-- Realm
-Save, fetch, etc. data, also known as local database  - easy and powerful.
-#### AutoLayout
-- SnapKit
-Easy to work with constraints programmatically.
+#### Color: Hue
+- To get hex color. 
+#### Keyboard: IQKeyboardManagerSwift
+- Smart keyboard.
+#### Storage: KeychainSwift
+- To save interesting info, like passwords, token etc.
+#### Network: Moya
+- Additional layer to work with Alamofire. Really easy to work with network.
+#### Database: Realm
+- Save, fetch, etc. data, also known as local database  - easy and powerful.
+#### AutoLayout: SnapKit
+- Easy to work with constraints programmatically.
+
+
+## Demo
+![Demo Video](Screenshots/demo.mov)
 
 ## Screenshots
 ![Profile](Screenshots/profile.png)
@@ -87,6 +86,7 @@ Easy to work with constraints programmatically.
 
 ## There is always room to improve
 - [ ] UI/UX - make more user friendly, with beautiful charts
+- [ ] Friend detail page with compares of progress/achievements
 - [ ] Connect with new APIs
 - [ ] Push notifications: friend is online, look to report of analytics etc.
 - [ ] Feature: Steam Items with prices etc.
