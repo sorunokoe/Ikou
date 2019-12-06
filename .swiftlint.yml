@@ -9,6 +9,7 @@ disabled_rules:
 - empty_enum_arguments
 - statement_position
 - empty_count
+- type_name
 opt_in_rules:
 - empty_count
 - force_unwrapping

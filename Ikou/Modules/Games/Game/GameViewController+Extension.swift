@@ -20,6 +20,14 @@ extension GameViewController{
     }
     private func setViews(){
         self.view.backgroundColor = Constants.Colors.background.color
+        iconImageView = {
+            let imageView = UIImageView()
+            imageView.clipsToBounds = true
+            imageView.contentMode = .scaleAspectFill
+            imageView.layer.cornerRadius = 20
+            imageView.makeShadow()
+            return imageView
+        }()
         titleLabel = {
             let label = UILabel()
             label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
@@ -50,13 +58,20 @@ extension GameViewController{
         }()
     }
     func addViews(){
-        [titleLabel, playTimeLabel, segmentCollectionView, contentView].forEach{
+        [iconImageView, titleLabel, playTimeLabel,
+         segmentCollectionView, contentView].forEach{
             self.view.addSubview($0)
         }
     }
     func setConstrains(){
+        iconImageView.snp.makeConstraints{
+            $0.top.equalToSuperview().offset(100)
+            $0.left.equalToSuperview()
+            $0.right.equalToSuperview()
+            $0.height.equalTo(80)
+        }
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(140)
+            $0.top.equalTo(iconImageView.snp.bottom).offset(30)
             $0.left.equalToSuperview().offset(20)
             $0.right.equalToSuperview().offset(-20)
         }

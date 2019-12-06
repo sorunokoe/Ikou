@@ -39,8 +39,10 @@ class EmptyView: UIView{
         }()
         titleLabel = {
             let label = UILabel()
+            label.textAlignment = .center
             label.textColor = Constants.Colors.title.color
             label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+            label.numberOfLines = 10
             return label
         }()
     }
@@ -59,6 +61,8 @@ class EmptyView: UIView{
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(imageView.snp.bottom).offset(10)
             $0.centerX.equalToSuperview()
+            $0.left.equalToSuperview().offset(50)
+            $0.right.equalToSuperview().offset(-50)
         }
     }
     

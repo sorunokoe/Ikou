@@ -15,7 +15,7 @@ class GameRouter: GameWireframeProtocol{
     static func createModule(game: Game) -> UIViewController{
         let steamId = CacheHelper.shared.get(.steamID) ?? ""
         let view = GameViewController()
-        let interactor = GameInteractor()
+        let interactor = GameInteractor(appId: game.appid, steamId: steamId)
         let router = GameRouter()
         let presenter = GamePresenter(view: view, interactor: interactor, router: router, game: game, steamId: steamId)
         view.presenter = presenter

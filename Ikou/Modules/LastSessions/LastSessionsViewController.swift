@@ -31,6 +31,7 @@ class LastSessionsViewController: UITableViewController{
         self.tableView.register(LastSessionsTableCell.self, forCellReuseIdentifier: CellIdentifier.LastSessionsCellIdentifier.rawValue)
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        presenter?.loadLastSessions()
     }
     
 }

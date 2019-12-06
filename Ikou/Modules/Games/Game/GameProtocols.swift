@@ -18,8 +18,9 @@ protocol GameViewProtocol: class{
     func gameDidLoad()
     func newsDidLoad()
     func achievementsDidLoad()
+    func statsDidLoad()
     func navigate(to: GameSegment)
-    func showError(error: String)
+    func showError(error: String, segment: GameSegment)
 }
 protocol GamePresenterProtocol: class{
     var interactor: GameInputInteractorProtocol? { get set }
@@ -30,24 +31,25 @@ protocol GamePresenterProtocol: class{
     func loadGame()
     func loadNews()
     func loadAchievements()
-    func loadCharts()
+    func loadStats()
     
     func getPlayTime() -> String
     func getGame() -> Game
     func getNews() -> [News]
     func getAchievements() -> [Achievement]
     func changeSegment(index: Int)
-    func getCharts() -> [ChartItem]
-    func getHeight(index: Int) -> CGFloat
+    func getStats() -> [StatItem]
 }
 protocol GameInputInteractorProtocol: class{
     var presenter: GameOutputInteractorProtocol? { get set }
     
-    func loadNews(appId: String)
-    func loadAchievements(appId: String, steamId: String)
+    func loadNews()
+    func loadAchievements()
+    func loadStats()
 }
 protocol GameOutputInteractorProtocol: class{
     func didLoadNews(news: [News])
     func didLoadAchievements(achievements: [Achievement])
-    func didLoadWith(error: SteamError)
+    func didLoadStats(stats: [StatItem])
+    func didLoadWith(error: String, segment: GameSegment)
 }

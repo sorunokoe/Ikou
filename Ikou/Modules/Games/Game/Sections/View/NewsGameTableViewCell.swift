@@ -9,29 +9,28 @@
 import UIKit
 import SnapKit
 
-class NewsGameCollectionViewCell: UICollectionViewCell{
+class NewsGameTableViewCell: UITableViewCell{
     
     var titleLabel: UILabel!
     var dateLabel: UILabel!
     var feedView: UIView!
     var feedLabel: UILabel!
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         configUI()
-        self.frame = self.frame.inset(by: UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20))
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setData(news: News){
         titleLabel.text = news.title
         if let date = news.date{
-            dateLabel.text = TimeAndDateHelper.getTimeFrom(unix: date)
+            dateLabel.text = TimeAndDateHelper.shared.getTimeFrom(unix: date)
         }
         feedLabel.text = news.feedlabel
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func prepareForReuse() {
@@ -42,7 +41,7 @@ class NewsGameCollectionViewCell: UICollectionViewCell{
     }
     
 }
-extension NewsGameCollectionViewCell{
+extension NewsGameTableViewCell{
     
     private func configUI(){
         setViews()
@@ -51,6 +50,7 @@ extension NewsGameCollectionViewCell{
     }
     
     private func setViews(){
+        self.backgroundColor = .clear
         self.contentView.backgroundColor = Constants.Colors.block.color
         self.contentView.layer.cornerRadius = Constants.Layout.avatarCornerRadius.rawValue
         titleLabel = {
@@ -87,6 +87,12 @@ extension NewsGameCollectionViewCell{
         feedView.addSubview(feedLabel)
     }
     private func setConstrains(){
+        contentView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(10)
+            $0.left.equalToSuperview().offset(20)
+            $0.right.equalToSuperview().offset(-20)
+            $0.bottom.equalToSuperview().offset(-10)
+        }
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(20)
             $0.left.equalToSuperview().offset(15)
@@ -101,12 +107,14 @@ extension NewsGameCollectionViewCell{
             $0.top.equalTo(dateLabel.snp.bottom).offset(15)
             $0.right.equalTo(titleLabel.snp.right)
             $0.left.equalTo(feedLabel.snp.left).offset(-10)
-            $0.bottom.equalTo(feedLabel.snp.bottom).offset(10)
+//            $0.bottom.equalTo(feedLabel.snp.bottom).offset(10)
+            $0.height.equalTo(40)
         }
         feedLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview()
         }
+        
     }
     
 }

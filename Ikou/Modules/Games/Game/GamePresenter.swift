@@ -27,8 +27,7 @@ class GamePresenter: GamePresenterProtocol{
     private var allNews = [News]()
     private var achievements = [Achievement]()
     
-    var maxValueOfChart = 0
-    private var charts = [ChartItem]()
+    private var stats = [StatItem]()
     
     private var steamId: String
     
@@ -46,26 +45,15 @@ class GamePresenter: GamePresenterProtocol{
     }
     
     func loadNews() {
-        interactor?.loadNews(appId: "\(game.appid)")
+        interactor?.loadNews()
     }
     
     func loadAchievements() {
-        interactor?.loadAchievements(appId: "\(game.appid)", steamId: steamId)
+        interactor?.loadAchievements()
     }
     
-    func loadCharts(){
-        var charts = [ChartItem]()
-        let today = Date()
-        let nextDate = Calendar.current.date(byAdding: .day, value: -1, to: today)
-        let nextDateYesterday = Calendar.current.date(byAdding: .day, value: -2, to: today)
-        charts.append(ChartItem(value: 2500, name: "total kills", date: Date()))
-        charts.append(ChartItem(value: 200, name: "total kills", date: nextDate!))
-        charts.append(ChartItem(value: 150, name: "total kills", date: nextDateYesterday!))
-        charts.append(ChartItem(value: 350, name: "total kills", date: nextDateYesterday!))
-        charts.append(ChartItem(value: 650, name: "total kills", date: nextDateYesterday!))
-        charts.append(ChartItem(value: 1450, name: "total kills", date: nextDateYesterday!))
-        charts.append(ChartItem(value: 450, name: "total kills", date: nextDateYesterday!))
-        self.charts = charts
+    func loadStats(){
+        interactor?.loadStats()
     }
     
     // MARK: - Prepare Data
@@ -74,7 +62,7 @@ class GamePresenter: GamePresenterProtocol{
     }
     
     func gameLoad() {
-        
+        // Request to get info about game from server
     }
     
     func getGame() -> Game {
@@ -95,40 +83,29 @@ class GamePresenter: GamePresenterProtocol{
         view?.navigate(to: segment)
     }
     
-    func getCharts() -> [ChartItem] {
-        return charts
-    }
-    func getHeight(index: Int) -> CGFloat{
-        maxValueOfChart = 0
-        charts.forEach {
-            if maxValueOfChart < $0.value{
-                maxValueOfChart = $0.value
-            }
-        }
-        let item = charts[index]
-        let itemProcent = Double(item.value)/100.0
-        let maxProcent = Double(maxValueOfChart)/100.0
-        let height = CGFloat((itemProcent/maxProcent)*200.0)
-        return height
+    func getStats() -> [StatItem] {
+        return stats
     }
 }
+
+// MARK: - Handlers from Interactor
 extension GamePresenter: GameOutputInteractorProtocol{
-    // MARK: - Handlers from Interactor
+    func didLoadStats(stats: [StatItem]) {
+        self.stats = stats
+        view?.statsDidLoad()
+    }
+    func didLoadStatsWithError(){
+        
+    }
     func didLoadNews(news: [News]) {
         self.allNews = news
         view?.newsDidLoad()
     }
-    
-    func didLoadWith(error: SteamError) {
-        switch error {
-        case .network(let error):
-            view?.showError(error: error.localizedDescription)
-        default:
-            break
-        }
-    }
     func didLoadAchievements(achievements: [Achievement]) {
         self.achievements = achievements
         view?.achievementsDidLoad()
+    }
+    func didLoadWith(error: String, segment: GameSegment) {
+        view?.showError(error: error, segment: segment)
     }
 }

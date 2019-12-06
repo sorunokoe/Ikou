@@ -13,9 +13,11 @@ class LastSessoinsInteractor: LastSessionsInputeInteractorProcol{
     
     var presenter: LastSessionsOutputInteractorProtocol?
     private var provider: MoyaProvider<SteamAPI>?
+    private var storage: LastSessionStorage?
     
     init(){
         provider = MoyaProvider<SteamAPI>()
+        storage = LastSessionStorage()
     }
     
     func loadLastSessions(steamId: String){
@@ -26,14 +28,24 @@ class LastSessoinsInteractor: LastSessionsInputeInteractorProcol{
                 do{
                     let lastSessionsResponse = try JSONDecoder().decode(LastSessionsResponse.self, from: data)
                     if let lastSessions = lastSessionsResponse.games{
-                        self?.presenter?.didLoadLastSessions(sessions: lastSessions)
+                        self?.storage?.set(lastSessions)
+                        self?.returnLastSessions()
                     }
                 }catch{
-                    self?.presenter?.didLoadWith(error: .decode)
+                    self?.presenter?.didLoadWith(error: SteamError.decode.errorDesciption)
                 }
             case .failure(let error):
-                self?.presenter?.didLoadWith(error: .network(error: error))
+                if !error.localizedDescription.contains("The Internet connection appears to be offline"){
+                    self?.presenter?.didLoadWith(error: SteamError.network(error: error).errorDesciption)
+                }
             }
         })
     }
+    
+    private func returnLastSessions(){
+        if let sessions = storage?.get(){
+            self.presenter?.didLoadLastSessions(sessions: sessions)
+        }
+    }
+    
 }

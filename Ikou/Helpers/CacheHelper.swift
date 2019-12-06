@@ -43,4 +43,8 @@ class CacheHelper: CacheHelperProtocol{
         }
     }
     
+    func clear(){
+        keychain.clear()
+    }
+    
 }

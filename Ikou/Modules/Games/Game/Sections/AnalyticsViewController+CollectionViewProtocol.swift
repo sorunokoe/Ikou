@@ -10,37 +10,62 @@ import UIKit
 
 extension AnalyticsViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let statsFacade = self.statsFacade else { return 0 }
         if collectionView == chartCollectionView{
-            return presenter?.getCharts().count ?? 0
+            guard let choosedLabel = choosedLabel else { return 0 }
+            let stats = statsFacade.getStatBy(label: choosedLabel).count
+            return stats
         }
         if collectionView == chartLabelsCollectionView{
-            return 2
+            let labels = statsFacade.getLabels().count
+            return labels
         }
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let statsFacade = self.statsFacade, let choosedLabel = choosedLabel else {
+            return UICollectionViewCell()
+        }
         if collectionView == chartCollectionView{
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.ItemIdentifier.rawValue, for: indexPath) as? ChartItemCollectionViewCell{
-                if let item = presenter?.getCharts()[indexPath.row], let height = presenter?.getHeight(index: indexPath.row){
-                    cell.setData(value: "\(item.value)", day: "Mon", date: "05.11", height: height)
-                    if cell == choosedChartItem{
-                        cell.show()
-                    }else{
-                        cell.hide()
-                    }
+                let item = statsFacade.getStatBy(label: choosedLabel)[indexPath.row]
+                let height = statsFacade.getHeight(index: indexPath.row)
+                let day = statsFacade.getDay(index: indexPath.row)
+                let date = statsFacade.getDate(index: indexPath.row)
+                cell.setData(value: "\(item.value)", day: day, date: date, height: height)
+                if cell == choosedItemCell{
+                    cell.show()
+                }else{
+                    cell.hide()
+                }
+                if choosedItemIndex == indexPath.row{
+                    choosedItemCell = cell
+                    cell.show()
+                }else{
+                    cell.hide()
                 }
                 return cell
             }
         }
         if collectionView == chartLabelsCollectionView{
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.LabelIdentifier.rawValue, for: indexPath) as? ChartLabelCollectionViewCell{
-                if let choosedChartLabel = choosedChartLabel, cell == choosedChartLabel{
+                let label = statsFacade.getLabels()[indexPath.row]
+                let name = statsFacade.getName(name: label)
+                cell.setData(title: name)
+                
+                if let choosedLabelCell = choosedLabelCell, cell == choosedLabelCell{
                     cell.show()
                 }else{
                     cell.hide()
                 }
-                cell.setData(title: "Total Kills")
+                if choosedLabelIndex == indexPath.row{
+                    choosedLabelCell = cell
+                    cell.show()
+                }else{
+                    cell.hide()
+                }
+                
                 return cell
             }
         }
@@ -50,18 +75,21 @@ extension AnalyticsViewController: UICollectionViewDataSource{
 extension AnalyticsViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? ChartItemCollectionViewCell{
-            if let choosedChartItem = choosedChartItem{
-                choosedChartItem.hide()
+            if let choosedItemCell = choosedItemCell{
+                choosedItemCell.hide()
             }
-            choosedChartItem = cell
-            choosedChartItem?.show()
+            choosedItemIndex = indexPath.row
+            choosedItemCell = cell
+            choosedItemCell?.show()
         }
         if let cell = collectionView.cellForItem(at: indexPath) as? ChartLabelCollectionViewCell{
-            if let choosedChartLabel = choosedChartLabel{
-                choosedChartLabel.hide()
+            choosedLabelIndex = indexPath.row
+            choosedLabel = statsFacade?.getLabels()[indexPath.row]
+            if let choosedLabelCell = choosedLabelCell{
+                choosedLabelCell.hide()
             }
-            choosedChartLabel = cell
-            choosedChartLabel?.show()
+            choosedLabelCell = cell
+            choosedLabelCell?.show()
         }
     }
 }

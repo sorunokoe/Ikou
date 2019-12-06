@@ -13,6 +13,7 @@ class GameViewController: UIViewController{
     
     var presenter: GamePresenterProtocol?
     
+    var iconImageView: UIImageView!
     var titleLabel: UILabel!
     var playTimeLabel: UILabel!
     var segmentCollectionView: UICollectionView!
@@ -21,9 +22,24 @@ class GameViewController: UIViewController{
     
     var choosedCell: UICollectionViewCell?
     
-    var newsController: NewsViewController?
-    var achievemenetsController: AchievementsViewController?
-    var analyticsController: AnalyticsViewController?
+    lazy var newsController: NewsViewController = {
+        let vc = NewsViewController()
+        vc.viewDidLoad()
+        vc.presenter = presenter
+        return vc
+    }()
+    lazy var achievemenetsController: AchievementsViewController = {
+        let vc = AchievementsViewController()
+        vc.viewDidLoad()
+        vc.presenter = presenter
+        return vc
+    }()
+    lazy var analyticsController: AnalyticsViewController = {
+        let vc = AnalyticsViewController()
+        vc.viewDidLoad()
+        vc.presenter = presenter
+        return vc
+    }()
     
     var choosedVC: UIViewController?
     
@@ -33,7 +49,7 @@ class GameViewController: UIViewController{
         presenter?.loadGame()
         presenter?.loadNews()
         presenter?.loadAchievements()
-        presenter?.loadCharts()
+        presenter?.loadStats()
         presenter?.changeSegment(index: 0)
     }
 }
@@ -41,41 +57,46 @@ extension GameViewController: GameViewProtocol{
     func navigate(to: GameSegment){
         switch to {
         case .news:
-            newsController = NewsViewController.initializeWithLayout()
-            guard let newsController = newsController else { return }
-            newsController.presenter = presenter
             addOrRemoveChild(vc: newsController)
             choosedVC = newsController
         case .analytics:
-            analyticsController = AnalyticsViewController()
-            guard let analyticsController = analyticsController else { return }
-            analyticsController.presenter = presenter
             addOrRemoveChild(vc: analyticsController)
             choosedVC = analyticsController
         case .achievements:
-            achievemenetsController = AchievementsViewController()
-            guard let achievemenetsController = achievemenetsController else { return }
-            achievemenetsController.presenter = presenter
             addOrRemoveChild(vc: achievemenetsController)
             choosedVC = achievemenetsController
         }
     }
     func gameDidLoad(){
         guard let game = presenter?.getGame() else { return }
+        ImageHelper.shared.getImageBy(url: .game(appid: game.appid, hash: game.img_logo_url)) {[weak self] (image) in
+            self?.iconImageView.image = image
+        }
         titleLabel.text = game.name
         playTimeLabel.text = presenter?.getPlayTime()
     }
-    func showError(error: String) {
-        self.presentError(error)
+    func showError(error: String, segment: GameSegment) {
+        switch segment {
+        case .news:
+            self.newsController.show(error: error)
+        case .achievements:
+            self.achievemenetsController.show(error: error)
+        case .analytics:
+            self.analyticsController.show(error: error)
+        }
     }
     
     func newsDidLoad() {
-        guard let newsController = newsController else { return }
         newsController.updateNews()
     }
     func achievementsDidLoad() {
-        guard let achievemenetsController = achievemenetsController else { return }
         achievemenetsController.updateAchievements()
+    }
+    func statsDidLoad(){
+        if let statsItem = presenter?.getStats(), !statsItem.isEmpty{
+            let statsFacade = StatisticsFacade(statsItems: statsItem)
+            analyticsController.updateStats(statsFacade: statsFacade)
+        }
     }
     
     // MARK: - Add & Remove Child

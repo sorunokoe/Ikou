@@ -11,7 +11,7 @@ import UIKit
 
 enum ImageType{
     case avatar(url: String)
-    case game(appid: String, hash: String)
+    case game(appid: Int, hash: String)
 }
 extension ImageType{
     var imageUrl: URL?{

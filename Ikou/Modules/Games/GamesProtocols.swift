@@ -35,5 +35,5 @@ protocol GamesInputInteractorProtocol: class{
 protocol GamesOutputInteractorProtocol: class{
     
     func didLoadGames(games: [Game])
-    func didLoadWith(error: SteamError)
+    func didLoadWith(error: String)
 }

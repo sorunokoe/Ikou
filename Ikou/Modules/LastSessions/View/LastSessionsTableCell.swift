@@ -26,7 +26,7 @@ class LastSessionsTableCell: UITableViewCell{
     
     func setData(session: LastSession){
         guard let appId = session.appid, let hash = session.img_icon_url else { return }
-        ImageHelper.shared.getImageBy(url: .game(appid: "\(appId)", hash: hash)) {[weak self] (image) in
+        ImageHelper.shared.getImageBy(url: .game(appid: appId, hash: hash)) {[weak self] (image) in
             self?.logoImageView.image = image
         }
         titleLabel.text = session.name

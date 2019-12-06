@@ -16,6 +16,7 @@ enum SteamAPI{
     case news(appId: String)
     case achievements(appId: String, steamId: String)
     case lastSessions(steamId: String)
+    case statsForGame(appId: String, steamId: String)
 }
 
 extension SteamAPI: TargetType{
@@ -37,13 +38,15 @@ extension SteamAPI: TargetType{
             return "ISteamUserStats/GetSchemaForGame/v2/"
         case .lastSessions(_):
             return "IPlayerService/GetRecentlyPlayedGames/v0001/"
+        case .statsForGame(_, _):
+            return "ISteamUserStats/GetUserStatsForGame/v2/"
         }
     }
     
     var method: Moya.Method {
         switch self {
         case .profile(_), .ownedGames(_), .friends(_),
-             .news(_), .achievements(_, _), .lastSessions(_):
+             .news(_), .achievements(_, _), .lastSessions(_), .statsForGame(_, _):
             return .get
         }
     }
@@ -88,6 +91,12 @@ extension SteamAPI: TargetType{
             return .requestParameters(parameters: [
                 "steamid": steamId,
                 "count": 10,
+                "key": Constants.Strings.steamKey.rawValue
+            ], encoding: URLEncoding.queryString)
+        case .statsForGame(let appId, let steamId):
+            return .requestParameters(parameters: [
+                "appid": appId,
+                "steamid": steamId,
                 "key": Constants.Strings.steamKey.rawValue
             ], encoding: URLEncoding.queryString)
         }

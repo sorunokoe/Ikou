@@ -38,7 +38,7 @@ class MainPresenter: MainPresenterProtocol{
     
     func loadProfile() {
         guard let steamId = steamId else { return }
-        interactor?.loadProfile(steamId: steamId)
+        interactor?.loadProfile()
     }
     
     func getAvatar(completion: @escaping ((UIImage) -> Void)){
@@ -55,7 +55,7 @@ class MainPresenter: MainPresenterProtocol{
     
     func getLastTimeOnline() -> String?{
         guard let profile = profile else { return nil }
-        return "Last online: \(TimeAndDateHelper.getTimeFrom(unix: profile.lastlogoff))"
+        return "Last online: \(TimeAndDateHelper.shared.getTimeFrom(unix: profile.lastlogoff))"
     }
     func getPrivateOrPublicProfile() -> String?{
         guard let profile = profile else { return nil }
@@ -72,19 +72,20 @@ class MainPresenter: MainPresenterProtocol{
     // MARK: - Owned Games
     
     func loadOwnedGames() {
-        guard let steamId = steamId else { return }
-        interactor?.loadOwnedGames(steamId: steamId)
+        interactor?.loadOwnedGames()
     }
     
     func getGames() -> [Game]{
         return games
     }
-    
+    func moveToGame(index: Int) {
+        let game = games[index]
+        router?.moveToGame(game: game)
+    }
     // MARK: - Friends
     
     func loadFriends() {
-        guard let steamId = steamId else { return }
-        interactor?.loadFriends(steamId: steamId)
+        interactor?.loadFriends()
     }
     
     func getFriends() -> [Profile] {
@@ -123,13 +124,8 @@ extension MainPresenter: MainOutputInteractorProtocol{
         }
     }
     
-    func didLoadWith(error: SteamError) {
-        switch error {
-        case .network(let error):
-            view?.showError(error.localizedDescription)
-        default:
-            break
-        }
+    func didLoadWith(error: String) {
+        view?.showError(error)
     }
     
 }

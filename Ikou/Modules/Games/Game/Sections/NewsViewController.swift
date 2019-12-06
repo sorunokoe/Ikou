@@ -8,45 +8,53 @@
 
 import UIKit
 
-class NewsViewController: UICollectionViewController{
+class NewsViewController: UITableViewController{
     
     weak var presenter: GamePresenterProtocol?
     
+    lazy var emptyView: EmptyView = {
+        let view = EmptyView()
+        return view
+    }()
+    
     enum CellIdentifier: String{
-        case news
+        case NewsIdentifier
     }
-    static func initializeWithLayout() -> NewsViewController{
-        let layout = UICollectionViewFlowLayout()
-        let width = UIScreen.main.bounds.width
-        layout.itemSize = CGSize(width: width, height: 160)
-        layout.scrollDirection = .vertical
-        return NewsViewController(collectionViewLayout: layout)
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = Constants.Colors.background.color
-        collectionView.register(NewsGameCollectionViewCell.self, forCellWithReuseIdentifier: CellIdentifier.news.rawValue)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        
+        tableView.backgroundColor = Constants.Colors.background.color
+        tableView.register(NewsGameTableViewCell.self, forCellReuseIdentifier: CellIdentifier.NewsIdentifier.rawValue)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorStyle = .none
     }
     
     func updateNews(){
-        collectionView.reloadData()
+        tableView.reloadData()
+    }
+    func show(error: String){
+        emptyView.setData(title: error)
+        tableView.backgroundView = emptyView
     }
     
 }
 extension NewsViewController{
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.getNews().count ?? 0
     }
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.news.rawValue, for: indexPath) as? NewsGameCollectionViewCell{
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.NewsIdentifier.rawValue, for: indexPath) as? NewsGameTableViewCell{
             if let news = presenter?.getNews()[indexPath.row]{
                 cell.setData(news: news)
+                cell.contentView.frame = cell.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
             }
+            cell.selectionStyle = .none
             return cell
         }
-        return UICollectionViewCell()
+        return UITableViewCell()
+    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 165
     }
 }

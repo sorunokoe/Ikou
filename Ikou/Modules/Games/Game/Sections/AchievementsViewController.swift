@@ -12,6 +12,11 @@ class AchievementsViewController: UITableViewController{
     
     weak var presenter: GamePresenterProtocol?
     
+    lazy var emptyView: EmptyView = {
+        let view = EmptyView()
+        return view
+    }()
+    
     enum CellIdentifier: String{
         case achievements
     }
@@ -21,10 +26,16 @@ class AchievementsViewController: UITableViewController{
         tableView.register(AchievementsTableViewCell.self, forCellReuseIdentifier: CellIdentifier.achievements.rawValue)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorStyle = .none
     }
     
     func updateAchievements(){
         tableView.reloadData()
+    }
+    
+    func show(error: String){
+        emptyView.setData(title: error)
+        tableView.backgroundView = emptyView
     }
     
 }

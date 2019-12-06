@@ -16,6 +16,11 @@ class ChartLabelCollectionViewCell: UICollectionViewCell{
     override init(frame: CGRect) {
         super.init(frame: frame)
         configUI()
+        self.snp.makeConstraints {
+            $0.height.equalTo(30)
+            $0.left.equalTo(titleLabel.snp.left).offset(-10)
+            $0.right.equalTo(titleLabel.snp.right).offset(10)
+        }
     }
     
     required init?(coder: NSCoder) {

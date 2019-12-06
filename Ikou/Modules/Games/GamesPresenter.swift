@@ -42,12 +42,7 @@ extension GamesPresenter: GamesOutputInteractorProtocol{
         view?.didLoadGames()
     }
     
-    func didLoadWith(error: SteamError) {
-        switch error {
-        case .network(let error):
-            view?.showError(error.localizedDescription)
-        default:
-            break
-        }
+    func didLoadWith(error: String) {
+        view?.showError(error)
     }
 }

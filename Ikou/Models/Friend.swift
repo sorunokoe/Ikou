@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct Friend: Codable{
     
@@ -27,4 +28,30 @@ struct Friend: Codable{
         friend_since = try container.decode(Int.self, forKey: .friend_since)
     }
     
+    init(object: FriendObject){
+        steamid = object.steamid
+        relationship = object.relationship
+        friend_since = object.friend_since
+    }
+    
+    func object() -> FriendObject{
+        let object = FriendObject()
+        object.steamid = steamid
+        object.relationship = relationship
+        object.friend_since = friend_since
+        return object
+    }
+    
+}
+
+class FriendObject: Object{
+    
+    @objc dynamic var steamid: String = ""
+    @objc dynamic var relationship: String = ""
+    @objc dynamic var friend_since: Int = 0
+    
+    override static func primaryKey() -> String? {
+        return "steamid"
+    }
+
 }

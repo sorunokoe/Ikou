@@ -34,8 +34,6 @@ extension AnalyticsGameTimeRangeView{
     func setViews(){
         self.backgroundColor = .clear
         self.layer.cornerRadius = 10
-        self.layer.borderColor = Constants.Colors.title.color.cgColor
-        self.layer.borderWidth = 1.0
         dateRangeChoosed = {
             let view = UIView()
             view.backgroundColor = Constants.Colors.status.color

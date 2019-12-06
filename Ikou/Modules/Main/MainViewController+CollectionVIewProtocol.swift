@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+extension MainViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.presenter?.getGames().count ?? 0
     }
@@ -21,6 +21,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         }
         return UICollectionViewCell()
+    }
+}
+extension MainViewController: UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.presenter?.moveToGame(index: indexPath.row)
     }
 }
 extension MainViewController: UICollectionViewDelegateFlowLayout {

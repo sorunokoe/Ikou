@@ -55,6 +55,7 @@ class ChartItemCollectionViewCell: UICollectionViewCell{
         dateLabel.text = nil
         valueLabel.isHidden = false
         wrapperView.backgroundColor = Constants.Colors.background.color
+        self.wrapperView.removeConstraints(self.wrapperView.constraints)
     }
     
 }
@@ -92,7 +93,7 @@ extension ChartItemCollectionViewCell{
         }()
         dateLabel = {
             let label = UILabel()
-            label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+            label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
             label.textColor = Constants.Colors.title.color
             label.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi/2))
             label.textAlignment = .center
@@ -113,7 +114,7 @@ extension ChartItemCollectionViewCell{
         }
         dateLabel.snp.makeConstraints {
             $0.bottom.equalToSuperview().offset(-30)
-            $0.right.equalToSuperview()
+            $0.right.equalToSuperview().offset(5)
         }
         dayLabel.snp.makeConstraints {
             $0.bottom.equalToSuperview().offset(-30)

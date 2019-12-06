@@ -33,13 +33,8 @@ class LastSessionsPresenter: LastSessionPresenterProtocol{
     }
 }
 extension LastSessionsPresenter: LastSessionsOutputInteractorProtocol{
-    func didLoadWith(error: SteamError) {
-        switch error {
-        case .network(let error):
-            view?.showError(error: error.localizedDescription)
-        default:
-            break
-        }
+    func didLoadWith(error: String) {
+        view?.showError(error: error)
     }
     func didLoadLastSessions(sessions: [LastSession]){
         self.lastSessions = sessions

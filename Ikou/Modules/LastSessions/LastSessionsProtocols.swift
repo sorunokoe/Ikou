@@ -31,5 +31,5 @@ protocol LastSessionsInputeInteractorProcol: class{
 protocol LastSessionsOutputInteractorProtocol: class{
     
     func didLoadLastSessions(sessions: [LastSession])
-    func didLoadWith(error: SteamError)
+    func didLoadWith(error: String)
 }

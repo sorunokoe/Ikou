@@ -12,6 +12,13 @@ import SnapKit
 class AnalyticsViewController: UIViewController{
     
     weak var presenter: GamePresenterProtocol?
+    var statsFacade: StatisticsFacadeProtocol?
+    
+    var choosedLabel: String?{
+        didSet{
+            self.chooseLastItem()
+        }
+    }
     
     // MARK: UI Properties
     var analyticView: UIView!
@@ -21,12 +28,24 @@ class AnalyticsViewController: UIViewController{
     
     var gradientLayer: CAGradientLayer!
     
-    var choosedChartItem: ChartItemCollectionViewCell?
-    var choosedChartLabel: ChartLabelCollectionViewCell?
-
+    var choosedItemIndex = 0
+    var choosedLabelIndex = 0
+    var choosedItemCell: ChartItemCollectionViewCell?
+    var choosedLabelCell: ChartLabelCollectionViewCell?
+    
+    lazy var emptyView: EmptyView = {
+        let view = EmptyView()
+        view.isHidden = true
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
+        self.view.addSubview(emptyView)
+        emptyView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,101 +55,27 @@ class AnalyticsViewController: UIViewController{
         super.viewDidLayoutSubviews()
         gradientLayer.frame = analyticView.bounds
     }
-}
-extension AnalyticsViewController{
     
-    enum CellIdentifier: String{
-        case ItemIdentifier
-        case LabelIdentifier
+    func updateStats(statsFacade: StatisticsFacadeProtocol){
+        self.statsFacade = statsFacade
+        analyticView.isHidden = false
+        emptyView.isHidden = true
+        choosedLabel = statsFacade.getLabels().first
+        self.chartCollectionView.reloadData()
+        self.chartLabelsCollectionView.reloadData()
+    }
+    private func chooseLastItem(){
+        guard let statsFacade = statsFacade, let choosedLabel = choosedLabel, !statsFacade.getStatBy(label: choosedLabel).isEmpty else { return }
+        let last = statsFacade.getStatBy(label: choosedLabel).count-1
+        choosedItemIndex = last
+        self.chartCollectionView.reloadData()
+        chartCollectionView.scrollToItem(at: IndexPath(item: choosedItemIndex, section: 0), at: .right, animated: true)
     }
     
-    func configUI(){
-        setViews()
-        addViews()
-        setConstrains()
-    }
-    
-    private func setViews(){
-        analyticView = {
-            let view = UIView()
-            view.layer.cornerRadius = 20
-            gradientLayer = CAGradientLayer()
-            gradientLayer.cornerRadius = 20
-            let background = Constants.Colors.background.color.cgColor
-            let status = Constants.Colors.progress.color.cgColor
-            gradientLayer.colors = [background, status, background]
-            gradientLayer.startPoint = CGPoint(x: 1.0, y: 0.0)
-            gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
-            view.clipsToBounds = true
-            gradientLayer.frame = view.bounds
-            view.layer.addSublayer(gradientLayer)
-            return view
-        }()
-        timeRangeView = {
-            let view = AnalyticsGameTimeRangeView()
-            return view
-        }()
-        chartCollectionView = {
-            let layout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSize(width: 40, height: 200)
-            layout.scrollDirection = .horizontal
-            layout.minimumInteritemSpacing = 20
-            let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
-            collectionView.backgroundColor = .clear
-            collectionView.showsVerticalScrollIndicator = false
-            collectionView.showsHorizontalScrollIndicator = false
-            collectionView.register(ChartItemCollectionViewCell.self, forCellWithReuseIdentifier: CellIdentifier.ItemIdentifier.rawValue)
-            collectionView.delegate = self
-            collectionView.dataSource = self
-            return collectionView
-        }()
-        chartLabelsCollectionView = {
-            let layout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSize(width: 100, height: 35)
-            layout.scrollDirection = .horizontal
-            let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
-            collectionView.register(ChartLabelCollectionViewCell.self, forCellWithReuseIdentifier: CellIdentifier.LabelIdentifier.rawValue)
-            collectionView.backgroundColor = .clear
-            collectionView.showsVerticalScrollIndicator = false
-            collectionView.showsHorizontalScrollIndicator = false
-            collectionView.delegate = self
-            collectionView.dataSource = self
-            return collectionView
-        }()
-    }
-    
-    private func addViews(){
-        self.view.addSubview(analyticView)
-        [timeRangeView, chartCollectionView, chartLabelsCollectionView].forEach{
-            analyticView.addSubview($0)
-        }
-    }
-    
-    private func setConstrains(){
-        analyticView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(20)
-            $0.left.equalToSuperview().offset(20)
-            $0.right.equalToSuperview().offset(-20)
-            $0.bottom.equalTo(chartLabelsCollectionView.snp.bottom).offset(20)
-        }
-        timeRangeView.snp.makeConstraints {
-            $0.right.equalToSuperview().offset(-20)
-            $0.top.equalToSuperview().offset(20)
-            $0.width.equalTo(200)
-            $0.height.equalTo(40)
-        }
-        chartCollectionView.snp.makeConstraints {
-            $0.top.equalTo(timeRangeView.snp.bottom).offset(20)
-            $0.left.equalToSuperview().offset(20)
-            $0.right.equalToSuperview().offset(-20)
-            $0.height.equalTo(250)
-        }
-        chartLabelsCollectionView.snp.makeConstraints {
-            $0.top.equalTo(chartCollectionView.snp.bottom).offset(20)
-            $0.left.equalToSuperview().offset(20)
-            $0.right.equalToSuperview().offset(-20)
-            $0.height.equalTo(50)
-        }
+    func show(error: String){
+        analyticView.isHidden = true
+        emptyView.setData(title: error)
+        emptyView.isHidden = false
     }
     
 }
