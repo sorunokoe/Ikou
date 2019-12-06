@@ -1,0 +1,6 @@
+framework module Pods_IkouTests {
+  umbrella header "Pods-IkouTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

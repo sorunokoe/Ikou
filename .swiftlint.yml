@@ -1,0 +1,29 @@
+disabled_rules:
+- function_parameter_count
+- nesting
+- variable_name
+- weak_delegate
+- trailing_comma
+- trailing_whitespace
+- opening_brace
+- empty_enum_arguments
+- statement_position
+- empty_count
+- type_name
+opt_in_rules:
+- empty_count
+- force_unwrapping
+- private_outlet
+warning_threshold: 25
+line_length: 200
+function_body_length: 50
+file_length:
+warning: 500
+type_body_length:
+warning: 400
+error: 450
+excluded:
+- Carthage/
+- Frameworks/
+- Pods
+reporter: "xcode"
