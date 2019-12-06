@@ -31,7 +31,7 @@ class FriendsTableViewCell: UITableViewCell{
         }
         usernameLabel.text = profile.personaname
         statusLabel.text = Constants.Steam.status[profile.personastate]
-        lastOnlineLabel.text = "Last online: \(TimeAndDateHelper.getTimeFrom(unix: profile.lastlogoff))"
+        lastOnlineLabel.text = "Last online: \(TimeAndDateHelper.shared.getTimeFrom(unix: profile.lastlogoff))"
     }
     
     override func prepareForReuse() {

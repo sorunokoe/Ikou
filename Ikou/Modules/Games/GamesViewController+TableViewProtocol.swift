@@ -31,8 +31,10 @@ extension GamesViewController{
     }
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = GamesHeaderView()
-        header.titleLabel.text = "Games Analytics"
+        header.titleLabel.text = "Games"
         return header
     }
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.moveToGame(index: indexPath.row)
+    }
 }

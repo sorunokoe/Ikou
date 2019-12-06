@@ -5,9 +5,6 @@ target 'Ikou' do
   use_frameworks!
 
   # Pods for Ikou
-  
-  #Loader
-  pod 'NVActivityIndicatorView'
 
   # Keyboard
   pod 'IQKeyboardManagerSwift'
@@ -17,10 +14,10 @@ target 'Ikou' do
   pod 'Hue'
 
   #DB
-  pod "RxRealm"
+  pod "RealmSwift"
 
   #Network
-  pod 'Moya/RxSwift'
+  pod 'Moya'
 
   #Cache
   pod 'KeychainSwift'

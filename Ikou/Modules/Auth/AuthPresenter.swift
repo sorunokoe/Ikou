@@ -11,7 +11,6 @@ import Foundation
 class AuthPresenter: AuthPresenterProtocol, AuthInteractorOutputProtocol{
     
     weak private var view: AuthViewProtocol?
-    private var cacheHelper: CacheHelper?
     var interactor: AuthInteractorInputProtocol?
     var router: AuthWireframeProtocol?
     
@@ -19,7 +18,6 @@ class AuthPresenter: AuthPresenterProtocol, AuthInteractorOutputProtocol{
         self.interactor = interactor
         self.view = interface
         self.router = router
-        self.cacheHelper = CacheHelper()
     }
     
     func getAuthURL(){
@@ -27,15 +25,16 @@ class AuthPresenter: AuthPresenterProtocol, AuthInteractorOutputProtocol{
         view?.didLoadAuth(url: url)
     }
     func retrieveSteamIdFrom(cookies: [HTTPCookie]) {
-        guard let cacheHelper = cacheHelper else { return }
         var steamID: String?
         for cookie in cookies{
             if cookie.name == "steamLoginSecure" {
                 steamID = String(cookie.value.split(separator: "%")[0])
+                HTTPCookieStorage.shared.deleteCookie(cookie)
+                break
             }
         }
         if let steamID = steamID{
-            cacheHelper.set(key: .steamID, value: String(steamID))
+            CacheHelper.shared.set(key: .steamID, value: String(steamID))
             router?.moveToMain()
         }
     }

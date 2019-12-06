@@ -12,11 +12,10 @@ import XCTest
 class MainInteractorTests: XCTestCase {
 
     var sut: MainInputInteractorProtocol!
-    let steamId = "76561198876056556"
     
     override func setUp() {
         super.setUp()
-        sut = MainInteractor()
+        sut = MainInteractor(steamId: "76561198876056556")
     }
 
     override func tearDown() {
@@ -28,7 +27,7 @@ class MainInteractorTests: XCTestCase {
         let expect = expectation(description: "Load Profile Steam ID")
         let presenter = MainPresenterMock(expectation: expect)
         sut.presenter = presenter
-        sut.loadProfile(steamId: steamId)
+        sut.loadProfile()
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertNotNil(presenter.profile)
     }
@@ -36,9 +35,17 @@ class MainInteractorTests: XCTestCase {
         let expect = expectation(description: "Load Owned Games Steam ID")
         let presenter = MainPresenterMock(expectation: expect)
         sut.presenter = presenter
-        sut.loadOwnedGames(steamId: steamId)
+        sut.loadOwnedGames()
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertTrue(presenter.isLoadedGames)
+    }
+    func test_LoadFriends(){
+        let expect = expectation(description: "Load Friends Steam ID")
+        let presenter = MainPresenterMock(expectation: expect)
+        sut.presenter = presenter
+        sut.loadFriends()
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertTrue(presenter.isLoadedFriends)
     }
     
 }
@@ -46,6 +53,7 @@ class MainPresenterMock: MainOutputInteractorProtocol{
     
     var profile: Profile?
     var isLoadedGames = false
+    var isLoadedFriends = false
     var expectation: XCTestExpectation!
     
     init(expectation: XCTestExpectation){
@@ -59,6 +67,11 @@ class MainPresenterMock: MainOutputInteractorProtocol{
     
     func didLoadGames(games: [Game]) {
         isLoadedGames = true
+        expectation.fulfill()
+    }
+    
+    func didLoadFriends(friends: [Friend]) {
+        isLoadedFriends = true
         expectation.fulfill()
     }
     

@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 protocol MainWireframeProtocol: class{
-    
+    func moveToOut()
+    func moveToGame(game: Game)
 }
 protocol MainViewProtocol: class {
     var presenter: MainPresenterProtocol? { get set }
@@ -29,9 +30,11 @@ protocol MainPresenterProtocol: class{
     func getUserStatus() -> String?
     func getLastTimeOnline() -> String?
     func getPrivateOrPublicProfile() -> String?
+    func exit()
     
     func loadOwnedGames()
     func getGames() -> [Game]
+    func moveToGame(index: Int)
     
     func loadFriends()
     func getFriends() -> [Profile]
@@ -40,14 +43,14 @@ protocol MainPresenterProtocol: class{
 protocol MainInputInteractorProtocol: class{
     var presenter: MainOutputInteractorProtocol? { get set }
     
-    func loadProfile(steamId: String)
-    func loadOwnedGames(steamId: String)
-    func loadFriends(steamId: String)
+    func loadProfile()
+    func loadOwnedGames()
+    func loadFriends()
     func loadProfileOf(friend: Friend, completion: @escaping ((Profile) -> Void))
 }
 protocol MainOutputInteractorProtocol: class{
     func didLoadProfile(profile: Profile?)
     func didLoadGames(games: [Game])
     func didLoadFriends(friends: [Friend])
-    func didLoadWith(error: SteamError)
+    func didLoadWith(error: String)
 }

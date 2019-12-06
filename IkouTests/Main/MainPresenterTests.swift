@@ -49,10 +49,11 @@ class MainPresenterTests: XCTestCase {
 
 }
 class MainViewMock: MainViewProtocol{
-    
+
     var presenter: MainPresenterProtocol?
     var isLoadedProfile = false
     var isLoadedOwnedGame = false
+    var isLoadedFriends = false
     var error: String?
     
     func didLoadProfile() {
@@ -61,6 +62,10 @@ class MainViewMock: MainViewProtocol{
     
     func didLoadOwnedGames() {
         isLoadedOwnedGame = true
+    }
+    
+    func didLoadFriends() {
+        isLoadedFriends = true
     }
     
     func showError(_ error: String) {
@@ -74,18 +79,24 @@ class MainInteractorMock: MainInputInteractorProtocol{
     var isLoadedProfile = false
     var isLoadedOwnedGame = false
     
-    func loadProfile(steamId: String) {
+    func loadProfile() {
         isLoadedProfile = true
         presenter?.didLoadProfile(profile: nil)
     }
     
-    func loadOwnedGames(steamId: String) {
+    func loadOwnedGames() {
         isLoadedOwnedGame = true
         presenter?.didLoadGames(games: [Game]())
     }
     
     func loadWithError(error: String) {
         presenter?.didLoadWith(error: error)
+    }
+    func loadFriends() {
+        
+    }
+    func loadProfileOf(friend: Friend, completion: @escaping ((Profile) -> Void)) {
+        
     }
     
 }

@@ -13,7 +13,7 @@ class GamesRouter: GamesWireframeProtocol{
     var vc: UIViewController?
     
     public static func createModule() -> UIViewController{
-        let steamId = CacheHelper().get(.steamID) ?? ""
+        let steamId = CacheHelper.shared.get(.steamID) ?? ""
         let view = GamesViewController()
         let interactor = GamesInteractor()
         let router = GamesRouter()
@@ -23,6 +23,11 @@ class GamesRouter: GamesWireframeProtocol{
         router.vc = view
         let nc = UINavigationController.init(rootViewController: view)
         return nc
+    }
+    
+    func moveToGame(game: Game) {
+        let vc = GameRouter.createModule(game: game)
+        self.vc?.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

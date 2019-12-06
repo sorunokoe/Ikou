@@ -9,7 +9,7 @@
 import Foundation
 
 protocol GamesWireframeProtocol: class{
-    
+    func moveToGame(game: Game)
 }
 protocol GamesViewProtocol: class{
     
@@ -24,6 +24,10 @@ protocol GamesPresenterProtocol: class{
     
     func loadGames()
     func getGames() -> [Game]
+    func moveToGame(index: Int)
+    func search(word: String)
+    func cancelSearch()
+    func isEmpty() -> Bool
 }
 protocol GamesInputInteractorProtocol: class{
     
@@ -34,5 +38,5 @@ protocol GamesInputInteractorProtocol: class{
 protocol GamesOutputInteractorProtocol: class{
     
     func didLoadGames(games: [Game])
-    func didLoadWith(error: SteamError)
+    func didLoadWith(error: String)
 }

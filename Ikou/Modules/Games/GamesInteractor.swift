@@ -13,26 +13,38 @@ class GamesInteractor: GamesInputInteractorProtocol{
     
     weak var presenter: GamesOutputInteractorProtocol?
     private var provider: MoyaProvider<SteamAPI>?
+    private var storage: GameStorage?
     
     init(){
-        self.provider = MoyaProvider<SteamAPI>()
+        provider = MoyaProvider<SteamAPI>()
+        storage = GameStorage()
     }
     
     func loadGames(steamId: String) {
-        guard let provider = provider else { return }
-        provider.request(.ownedGames(steamId: steamId)){[weak self] result in
+        self.returnGames()
+        provider?.request(.ownedGames(steamId: steamId)){[weak self] result in
             switch result{
             case let .success(response):
                 let data = response.data
                 do{
                     let ownedGamesResponse = try JSONDecoder().decode(SteamResponse<OwnedGamesResponse>.self, from: data)
-                    self?.presenter?.didLoadGames(games: ownedGamesResponse.response.games)
+                    let games = ownedGamesResponse.response.games
+                    self?.storage?.set(games)
+                    self?.returnGames()
                 }catch{
-                    self?.presenter?.didLoadWith(error: .decode)
+                    self?.presenter?.didLoadWith(error: SteamError.decode.errorDesciption)
                 }
             case let .failure(error):
-                self?.presenter?.didLoadWith(error: .network(error: error))
+                if !error.localizedDescription.contains("The Internet connection appears to be offline"){
+                    self?.presenter?.didLoadWith(error: SteamError.network(error: error).errorDesciption)
+                }
             }
+        }
+    }
+    
+    private func returnGames(){
+        if let games = storage?.get(){
+            self.presenter?.didLoadGames(games: games)
         }
     }
     
