@@ -1,5 +1,5 @@
 # Ikou
-> Challange from [funcodechallenge](https://funcodechallenge.com/]). Steam Interface.
+Steam Interface.
 
 [![Swift Version][swift-image]][swift-url]
 [![License][license-image]][license-url]
